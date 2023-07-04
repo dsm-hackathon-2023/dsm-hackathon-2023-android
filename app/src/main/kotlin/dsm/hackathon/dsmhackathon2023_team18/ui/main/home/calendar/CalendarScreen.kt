@@ -8,8 +8,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Background
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Primary
 
 @Composable
@@ -26,7 +26,7 @@ fun CalendarScreen(
             modifier = modifier
                 .fillMaxSize()
                 .background(
-                    color = Background,
+                    color = Color.White,
                     shape = RoundedCornerShape(
                         topStart = 32.dp,
                         topEnd = 32.dp,
