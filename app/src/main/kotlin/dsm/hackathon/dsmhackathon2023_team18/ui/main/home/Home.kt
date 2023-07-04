@@ -2,6 +2,7 @@
 
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.home
 
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
@@ -11,17 +12,11 @@ import androidx.compose.animation.with
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -96,14 +91,13 @@ fun Home(
                     NavigationBarItem(
                         colors = navColors,
                         selected = selected == CALENDAR,
-                        modifier = Modifier.fillMaxHeight(),
                         onClick = {
                             selected = CALENDAR
                             navController.navigate(CALENDAR.route)
                         },
                         icon = {
                             Icon(
-                                imageVector = Icons.Filled.DateRange,
+                                painter = painterResource(id = CALENDAR.iconRes),
                                 contentDescription = "bottom app bar item",
                             )
                         },
@@ -111,14 +105,13 @@ fun Home(
                     NavigationBarItem(
                         colors = navColors,
                         selected = selected == COMMUNITY,
-                        modifier = Modifier.fillMaxHeight(),
                         onClick = {
                             selected = COMMUNITY
                             navController.navigate(COMMUNITY.route)
                         },
                         icon = {
                             Icon(
-                                imageVector = Icons.Filled.FavoriteBorder,
+                                painter = painterResource(id = COMMUNITY.iconRes),
                                 contentDescription = "bottom app bar item",
                             )
                         },
@@ -127,14 +120,13 @@ fun Home(
                     NavigationBarItem(
                         colors = navColors,
                         selected = selected == REPORT,
-                        modifier = Modifier.fillMaxHeight(),
                         onClick = {
                             selected = REPORT
                             navController.navigate(REPORT.route)
                         },
                         icon = {
                             Icon(
-                                imageVector = Icons.Filled.Person,
+                                painter = painterResource(id = REPORT.iconRes),
                                 contentDescription = "bottom app bar item",
                             )
                         },
@@ -142,14 +134,13 @@ fun Home(
                     NavigationBarItem(
                         colors = navColors,
                         selected = selected == ALL,
-                        modifier = Modifier.fillMaxHeight(),
                         onClick = {
                             selected = ALL
                             navController.navigate(ALL.route)
                         },
                         icon = {
                             Icon(
-                                imageVector = Icons.Filled.Menu,
+                                painter = painterResource(id = ALL.iconRes),
                                 contentDescription = "bottom app bar item",
                             )
                         },
@@ -200,17 +191,22 @@ fun Home(
 
 private enum class HomeSections(
     val route: String,
+    @DrawableRes val iconRes: Int,
 ) {
     CALENDAR(
         route = "calendar",
+        iconRes = R.drawable.ic_calendar,
     ),
     COMMUNITY(
         route = "community",
+        iconRes = R.drawable.ic_community,
     ),
     REPORT(
         route = "report",
+        iconRes = R.drawable.ic_report,
     ),
     ALL(
-        route = "all"
+        route = "all",
+        iconRes = R.drawable.ic_all,
     ),
 }
