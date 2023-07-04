@@ -1,5 +1,13 @@
+@file:OptIn(ExperimentalAnimationApi::class)
+
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.home
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.with
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
@@ -43,7 +51,10 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.HomeSections.REPORT
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
+private fun expandFading(time: Int) =
+    fadeIn(animationSpec = tween(time * 3)) with fadeOut(animationSpec = tween(time))
+
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun Home(
     modifier: Modifier = Modifier,
@@ -51,18 +62,17 @@ fun Home(
     val navController = rememberNavController()
     val scope = rememberCoroutineScope()
     var recordButtonClicked by remember { mutableStateOf(false) }
-    val onRecordButtonClick by remember {
-        mutableStateOf(
-            {
-                recordButtonClicked = true
-                scope.launch {
-                    delay(1000L)
-                    recordButtonClicked = false
-                }
-                Unit
-            },
-        )
+    val onRecordButtonClick = {
+        if (!recordButtonClicked) {
+            recordButtonClicked = true
+            scope.launch {
+                delay(1000L)
+                recordButtonClicked = false
+            }
+            Unit
+        }
     }
+
     var selected by remember { mutableStateOf(CALENDAR) }
     val navColors = NavigationBarItemDefaults.colors(
         selectedIconColor = Color.White,
@@ -79,8 +89,7 @@ fun Home(
         Scaffold(
             bottomBar = {
                 NavigationBar(
-                    modifier = Modifier
-                        .height(52.dp),
+                    modifier = Modifier.height(52.dp),
                     containerColor = Color(0xFFF5594E),
                 ) {
                     Spacer(modifier = Modifier.width(8.dp))
@@ -165,21 +174,26 @@ fun Home(
         }
         IconButton(
             modifier = Modifier
-                .padding(bottom = 24.dp)
-                .size(52.dp),
+                .padding(bottom = 16.dp)
+                .size(64.dp),
             onClick = onRecordButtonClick,
         ) {
-            Icon(
-                painter = painterResource(
-                    if (recordButtonClicked) {
-                        R.drawable.ic_rice_cake_button_pressed
-                    } else {
-                        R.drawable.ic_rice_cake_button_default
-                    },
-                ),
-                contentDescription = "create new record",
-                tint = Color.Unspecified,
-            )
+            AnimatedContent(
+                targetState = recordButtonClicked,
+                label = "",
+            ) {
+                Icon(
+                    painter = painterResource(
+                        if (recordButtonClicked) {
+                            R.drawable.ic_rice_cake_button_pressed
+                        } else {
+                            R.drawable.ic_rice_cake_button_default
+                        },
+                    ),
+                    contentDescription = "create new record",
+                    tint = Color.Unspecified,
+                )
+            }
         }
     }
 }
