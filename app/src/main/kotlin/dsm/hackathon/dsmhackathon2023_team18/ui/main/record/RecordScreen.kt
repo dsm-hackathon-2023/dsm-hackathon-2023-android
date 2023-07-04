@@ -4,16 +4,22 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -36,12 +42,19 @@ fun RecordScreen(
     modifier: Modifier = Modifier,
     onNavigateUp: () -> Unit,
 ) {
-    Column {
+    val topAppBarColors = TopAppBarDefaults.smallTopAppBarColors(
+        containerColor = Color.Transparent,
+    )
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+    ) {
+        Spacer(modifier = Modifier.height(24.dp))
         TopAppBar(
             title = {
-                Text(
-                    text = "감정 기록하기",
-                )
+                Text(text = "감정 기록하기")
             },
             navigationIcon = {
                 IconButton(
@@ -53,8 +66,14 @@ fun RecordScreen(
                     )
                 }
             },
+            colors = topAppBarColors,
         )
-        DdeokMessage(message = "안녕하세요. 오늘 하루도 잘 보내셨나요? \n오늘 당신의 하루는 어땠는지 말씀해주세요!")
+        DdeokMessage(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            message = "안녕하세요. 오늘 하루도 잘 보내셨나요? \n오늘 당신의 하루는 어땠는지 말씀해주세요!",
+        )
     }
 }
 
@@ -103,12 +122,16 @@ private fun DdeokMessage(
 
         Text(
             modifier = Modifier
-                .background(Gray2)
+                .background(
+                    color = Gray2,
+                    shape = RoundedCornerShape(20.dp),
+                )
                 .padding(
                     horizontal = 16.dp,
                     vertical = 12.dp,
                 ),
             text = message,
+            style = MaterialTheme.typography.bodyMedium,
         )
     }
 }
