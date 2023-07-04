@@ -1,16 +1,11 @@
-@file:OptIn(ExperimentalAnimationApi::class)
-
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.home
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.with
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -35,11 +30,8 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.calendar.CalendarScree
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-private fun expandFading(time: Int) =
-    fadeIn(animationSpec = tween(time * 3)) with fadeOut(animationSpec = tween(time))
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Home(
     modifier: Modifier = Modifier,
@@ -59,50 +51,55 @@ fun Home(
     val topAppBarColors = TopAppBarDefaults.smallTopAppBarColors(
         containerColor = Color.Transparent,
     )
-
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
-                navigationIcon = {
-                    IconButton(
-                        onClick = { /*TODO*/ },
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_settings),
-                            contentDescription = null,
-                            tint = Color.White,
-                        )
-                    }
-                },
-                title = { },
-                actions = {
-                    Spacer(modifier = Modifier.width(16.dp))
-                    IconButton(
-                        modifier = Modifier.size(32.dp),
-                        onClick = { /*TODO*/ },
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_report),
-                            tint = Color.White,
-                            contentDescription = "report",
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    IconButton(
-                        modifier = Modifier.size(32.dp),
-                        onClick = { /*TODO*/ },
-                    ) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_timeline),
-                            tint = Color.White,
-                            contentDescription = "timeline",
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(16.dp))
-                },
-                colors = topAppBarColors,
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 24.dp),
+            ) {
+                TopAppBar(
+                    navigationIcon = {
+                        IconButton(
+                            onClick = { /*TODO*/ },
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_settings),
+                                contentDescription = null,
+                                tint = Color.White,
+                            )
+                        }
+                    },
+                    title = { },
+                    actions = {
+                        Spacer(modifier = Modifier.width(16.dp))
+                        IconButton(
+                            modifier = Modifier.size(32.dp),
+                            onClick = { /*TODO*/ },
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_report),
+                                tint = Color.White,
+                                contentDescription = "report",
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(8.dp))
+                        IconButton(
+                            modifier = Modifier.size(32.dp),
+                            onClick = { /*TODO*/ },
+                        ) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_timeline),
+                                tint = Color.White,
+                                contentDescription = "timeline",
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(16.dp))
+                    },
+                    colors = topAppBarColors,
+                )
+            }
         },
         floatingActionButton = {
             IconButton(
