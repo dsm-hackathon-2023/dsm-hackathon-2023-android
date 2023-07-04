@@ -35,10 +35,12 @@ import kotlinx.coroutines.launch
 @Composable
 fun Home(
     modifier: Modifier = Modifier,
+    onNavigateToRecord: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     var recordButtonClicked by remember { mutableStateOf(false) }
     val onRecordButtonClick = {
+        onNavigateToRecord()
         if (!recordButtonClicked) {
             recordButtonClicked = true
             scope.launch {

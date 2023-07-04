@@ -87,7 +87,7 @@ fun OnuiApp() {
                 navController = navController,
                 startDestination = MainDestination.route,
             ) {
-                mainNavigation()
+                mainNavigation(navController)
                 authNavigation()
             }
         }
