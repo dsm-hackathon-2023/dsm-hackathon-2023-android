@@ -4,7 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.navigation
 
 fun NavGraphBuilder.authNavigation() {
-    navigation()
+    // navigation()
 }
 
 object AuthDestination {
