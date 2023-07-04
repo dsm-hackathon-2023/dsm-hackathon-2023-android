@@ -3,6 +3,7 @@ package dsm.hackathon.dsmhackathon2023_team18.ui.main.home
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
@@ -48,27 +49,41 @@ fun Home(
     Scaffold(
         modifier = modifier.fillMaxSize(),
         bottomBar = {
-            BottomAppBar()
+            BottomAppBar(
+                containerColor = Color(0xFFF5594E),
+                actions = {
+                    /*IconButton(onClick = { *//* Check onClick *//* }) {
+                        Icon(Icons.Filled.Check, contentDescription = "", tint = Color.White)
+                    }
+                    IconButton(onClick = { *//* Edit onClick *//* }) {
+                        Icon(
+                            Icons.Filled.Edit, contentDescription = "", tint = Color.White)
+                    }
+                    IconButton(onClick = { *//* Delete onClick *//* }) {
+                        Icon(Icons.Filled.Delete, contentDescription = "", tint = Color.White,)
+                    }*/
+                },
+                floatingActionButton = {
+                    IconButton(
+                        modifier = Modifier.size(52.dp),
+                        onClick = onRecordButtonClick,
+                    ) {
+                        Icon(
+                            painter = painterResource(
+                                if (recordButtonClicked) {
+                                    R.drawable.ic_rice_cake_button_pressed
+                                } else {
+                                    R.drawable.ic_rice_cake_button_default
+                                },
+                            ),
+                            contentDescription = "create new record",
+                            tint = Color.Unspecified,
+                        )
+                    }
+                }
+            )
         },
         floatingActionButtonPosition = FabPosition.Center,
-        floatingActionButton = {
-            IconButton(
-                modifier = Modifier.size(52.dp),
-                onClick = onRecordButtonClick,
-            ) {
-                Icon(
-                    painter = painterResource(
-                        if (recordButtonClicked) {
-                            R.drawable.ic_rice_cake_button_pressed
-                        } else {
-                            R.drawable.ic_rice_cake_button_default
-                        },
-                    ),
-                    contentDescription = "create new record",
-                    tint = Color.Unspecified,
-                )
-            }
-        },
     ) { padValues ->
         NavHost(
             modifier = Modifier
@@ -88,9 +103,4 @@ private enum class HomeSections(
     CALENDAR(
         route = "calendar",
     )
-}
-
-@Composable
-fun BottomAppBar() {
-
 }
