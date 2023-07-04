@@ -1,9 +1,14 @@
 package dsm.hackathon.dsmhackathon2023_team18
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,27 +23,33 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.theme.DSMHackathon2023Team18Them
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+        )
         setContent {
-            DSMHackathon2023Team18Theme {
-                OnuiApp()
-            }
+            OnuiApp()
         }
     }
 }
 
 @Composable
 fun OnuiApp() {
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = Color(0xFFF5F0EF),
-    ) {
-        val navController = rememberNavController()
-        NavHost(
-            navController = navController,
-            startDestination = MainDestination.route,
+    DSMHackathon2023Team18Theme {
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(WindowInsets.systemBars.asPaddingValues()),
+            color = Color(0xFFF5F0EF),
         ) {
-            mainNavigation()
-            authNavigation()
+            val navController = rememberNavController()
+            NavHost(
+                navController = navController,
+                startDestination = MainDestination.route,
+            ) {
+                mainNavigation()
+                authNavigation()
+            }
         }
     }
 }
