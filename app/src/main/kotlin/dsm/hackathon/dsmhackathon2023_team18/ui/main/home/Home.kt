@@ -18,6 +18,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -62,6 +63,13 @@ fun Home(
         )
     }
     var selected by remember { mutableStateOf(CALENDAR) }
+    val navColors = NavigationBarItemDefaults.colors(
+        selectedIconColor = Color.White,
+        selectedTextColor = Color.White,
+        indicatorColor = Color(0xFFCD3E34),
+        unselectedIconColor = Color(0xFFCD3E34),
+        unselectedTextColor = Color(0xFFCD3E34),
+    )
 
     Box(
         modifier = modifier.fillMaxSize(),
@@ -76,6 +84,7 @@ fun Home(
                 ) {
                     Spacer(modifier = Modifier.width(8.dp))
                     NavigationBarItem(
+                        colors = navColors,
                         selected = selected == CALENDAR,
                         modifier = Modifier.fillMaxHeight(),
                         onClick = {
@@ -90,6 +99,7 @@ fun Home(
                         },
                     )
                     NavigationBarItem(
+                        colors = navColors,
                         selected = selected == COMMUNITY,
                         modifier = Modifier.fillMaxHeight(),
                         onClick = {
@@ -105,6 +115,7 @@ fun Home(
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     NavigationBarItem(
+                        colors = navColors,
                         selected = selected == REPORT,
                         modifier = Modifier.fillMaxHeight(),
                         onClick = {
@@ -119,6 +130,7 @@ fun Home(
                         },
                     )
                     NavigationBarItem(
+                        colors = navColors,
                         selected = selected == ALL,
                         modifier = Modifier.fillMaxHeight(),
                         onClick = {
