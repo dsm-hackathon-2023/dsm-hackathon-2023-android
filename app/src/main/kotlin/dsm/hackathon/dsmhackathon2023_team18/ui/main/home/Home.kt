@@ -2,59 +2,48 @@
 
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.home
 
-import androidx.annotation.DrawableRes
+import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.with
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import dsm.hackathon.dsmhackathon2023_team18.R
-import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.HomeSections.ALL
-import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.HomeSections.CALENDAR
-import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.HomeSections.COMMUNITY
-import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.HomeSections.REPORT
+import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.calendar.CalendarScreen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 private fun expandFading(time: Int) =
     fadeIn(animationSpec = tween(time * 3)) with fadeOut(animationSpec = tween(time))
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
 fun Home(
     modifier: Modifier = Modifier,
 ) {
-    val navController = rememberNavController()
     val scope = rememberCoroutineScope()
     var recordButtonClicked by remember { mutableStateOf(false) }
     val onRecordButtonClick = {
@@ -67,146 +56,80 @@ fun Home(
             Unit
         }
     }
-
-    var selected by remember { mutableStateOf(CALENDAR) }
-    val navColors = NavigationBarItemDefaults.colors(
-        selectedIconColor = Color.White,
-        selectedTextColor = Color.White,
-        indicatorColor = Color(0xFFCD3E34),
-        unselectedIconColor = Color(0xFFCD3E34),
-        unselectedTextColor = Color(0xFFCD3E34),
+    val topAppBarColors = TopAppBarDefaults.smallTopAppBarColors(
+        containerColor = Color.Transparent,
     )
 
-    Box(
+    Scaffold(
         modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.BottomCenter,
-    ) {
-        Scaffold(
-            bottomBar = {
-                NavigationBar(
-                    modifier = Modifier.height(52.dp),
-                    containerColor = Color(0xFFF5594E),
-                ) {
+        topBar = {
+            TopAppBar(
+                navigationIcon = {
+                    IconButton(
+                        onClick = { /*TODO*/ },
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_all),
+                            contentDescription = null,
+                            tint = Color.White,
+                        )
+                    }
+                },
+                title = { },
+                actions = {
+                    Spacer(modifier = Modifier.width(16.dp))
+                    IconButton(
+                        modifier = Modifier.size(32.dp),
+                        onClick = { /*TODO*/ },
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_ddeok_very_good),
+                            tint = Color.Unspecified,
+                            contentDescription = "task",
+                        )
+                    }
                     Spacer(modifier = Modifier.width(8.dp))
-                    NavigationBarItem(
-                        colors = navColors,
-                        selected = selected == CALENDAR,
-                        onClick = {
-                            selected = CALENDAR
-                            navController.navigate(CALENDAR.route)
-                        },
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = CALENDAR.iconRes),
-                                contentDescription = "bottom app bar item",
-                            )
-                        },
-                    )
-                    NavigationBarItem(
-                        colors = navColors,
-                        selected = selected == COMMUNITY,
-                        onClick = {
-                            selected = COMMUNITY
-                            navController.navigate(COMMUNITY.route)
-                        },
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = COMMUNITY.iconRes),
-                                contentDescription = "bottom app bar item",
-                            )
-                        },
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    NavigationBarItem(
-                        colors = navColors,
-                        selected = selected == REPORT,
-                        onClick = {
-                            selected = REPORT
-                            navController.navigate(REPORT.route)
-                        },
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = REPORT.iconRes),
-                                contentDescription = "bottom app bar item",
-                            )
-                        },
-                    )
-                    NavigationBarItem(
-                        colors = navColors,
-                        selected = selected == ALL,
-                        onClick = {
-                            selected = ALL
-                            navController.navigate(ALL.route)
-                        },
-                        icon = {
-                            Icon(
-                                painter = painterResource(id = ALL.iconRes),
-                                contentDescription = "bottom app bar item",
-                            )
-                        },
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                }
-            },
-        ) { padValues ->
-            NavHost(
+                    IconButton(
+                        modifier = Modifier.size(32.dp),
+                        onClick = { /*TODO*/ },
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_ddeok_very_bad),
+                            tint = Color.Unspecified,
+                            contentDescription = "timeline",
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                },
+                colors = topAppBarColors,
+            )
+        },
+        floatingActionButton = {
+            IconButton(
                 modifier = Modifier
-                    .background(Color(0xFFF5F0EF))
-                    .padding(padValues)
-                    .fillMaxSize(),
-                navController = navController,
-                startDestination = CALENDAR.route,
+                    .padding(bottom = 16.dp)
+                    .size(64.dp),
+                onClick = onRecordButtonClick,
             ) {
-                composable(CALENDAR.route) {}
-                composable(COMMUNITY.route) {}
-                composable(REPORT.route) {}
-                composable(ALL.route) {}
+                AnimatedContent(
+                    targetState = recordButtonClicked,
+                    label = "",
+                ) {
+                    Icon(
+                        painter = painterResource(
+                            if (recordButtonClicked) {
+                                R.drawable.ic_rice_cake_button_pressed
+                            } else {
+                                R.drawable.ic_rice_cake_button_default
+                            },
+                        ),
+                        contentDescription = "create new record",
+                        tint = Color.Unspecified,
+                    )
+                }
             }
-        }
-        IconButton(
-            modifier = Modifier
-                .padding(bottom = 16.dp)
-                .size(64.dp),
-            onClick = onRecordButtonClick,
-        ) {
-            AnimatedContent(
-                targetState = recordButtonClicked,
-                label = "",
-            ) {
-                Icon(
-                    painter = painterResource(
-                        if (recordButtonClicked) {
-                            R.drawable.ic_rice_cake_button_pressed
-                        } else {
-                            R.drawable.ic_rice_cake_button_default
-                        },
-                    ),
-                    contentDescription = "create new record",
-                    tint = Color.Unspecified,
-                )
-            }
-        }
+        },
+    ) {
+        CalendarScreen()
     }
-}
-
-private enum class HomeSections(
-    val route: String,
-    @DrawableRes val iconRes: Int,
-) {
-    CALENDAR(
-        route = "calendar",
-        iconRes = R.drawable.ic_calendar,
-    ),
-    COMMUNITY(
-        route = "community",
-        iconRes = R.drawable.ic_community,
-    ),
-    REPORT(
-        route = "report",
-        iconRes = R.drawable.ic_report,
-    ),
-    ALL(
-        route = "all",
-        iconRes = R.drawable.ic_all,
-    ),
 }
