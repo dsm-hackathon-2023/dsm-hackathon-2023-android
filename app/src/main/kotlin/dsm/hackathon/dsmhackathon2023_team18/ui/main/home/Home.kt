@@ -84,8 +84,8 @@ fun Home(
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_report),
-                            tint = Color.Unspecified,
-                            contentDescription = "task",
+                            tint = Color.White,
+                            contentDescription = "report",
                         )
                     }
                     Spacer(modifier = Modifier.width(8.dp))
@@ -95,7 +95,7 @@ fun Home(
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_timeline),
-                            tint = Color.Unspecified,
+                            tint = Color.White,
                             contentDescription = "timeline",
                         )
                     }
