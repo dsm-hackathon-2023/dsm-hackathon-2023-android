@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import dsm.hackathon.dsmhackathon2023_team18.ui.auth.AuthDestination
+import dsm.hackathon.dsmhackathon2023_team18.ui.auth.authNavigation
+import dsm.hackathon.dsmhackathon2023_team18.ui.main.MainDestination
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.mainNavigation
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.DSMHackathon2023Team18Theme
 
@@ -28,14 +30,16 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun OnuiApp() {
     Surface(
-        modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background,
     ) {
         val navController = rememberNavController()
         NavHost(
             navController = navController,
-            startDestination = AuthDestination.route,
+            startDestination = MainDestination.route,
         ) {
             mainNavigation()
+            authNavigation()
         }
     }
 }
