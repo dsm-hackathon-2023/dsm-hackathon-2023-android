@@ -28,8 +28,8 @@ fun CalendarScreen(
                 .background(
                     color = Background,
                     shape = RoundedCornerShape(
-                        topStart = 20.dp,
-                        topEnd = 20.dp,
+                        topStart = 32.dp,
+                        topEnd = 32.dp,
                     ),
                 ),
         ) {
