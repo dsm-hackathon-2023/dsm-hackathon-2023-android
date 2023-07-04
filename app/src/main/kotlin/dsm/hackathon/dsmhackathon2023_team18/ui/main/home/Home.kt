@@ -69,7 +69,7 @@ fun Home(
                         onClick = { /*TODO*/ },
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_all),
+                            painter = painterResource(id = R.drawable.ic_settings),
                             contentDescription = null,
                             tint = Color.White,
                         )
@@ -83,7 +83,7 @@ fun Home(
                         onClick = { /*TODO*/ },
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_ddeok_very_good),
+                            painter = painterResource(id = R.drawable.ic_report),
                             tint = Color.Unspecified,
                             contentDescription = "task",
                         )
@@ -94,7 +94,7 @@ fun Home(
                         onClick = { /*TODO*/ },
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_ddeok_very_bad),
+                            painter = painterResource(id = R.drawable.ic_timeline),
                             tint = Color.Unspecified,
                             contentDescription = "timeline",
                         )
