@@ -1,5 +1,6 @@
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.home
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -79,7 +80,7 @@ fun Home(
             bottomBar = {
                 NavigationBar(
                     modifier = Modifier
-                        .height(48.dp),
+                        .height(52.dp),
                     containerColor = Color(0xFFF5594E),
                 ) {
                     Spacer(modifier = Modifier.width(8.dp))
@@ -150,6 +151,7 @@ fun Home(
         ) { padValues ->
             NavHost(
                 modifier = Modifier
+                    .background(Color(0xFFF5F0EF))
                     .padding(padValues)
                     .fillMaxSize(),
                 navController = navController,
