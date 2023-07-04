@@ -103,9 +103,7 @@ fun Home(
         },
         floatingActionButton = {
             IconButton(
-                modifier = Modifier
-                    .padding(bottom = 16.dp)
-                    .size(64.dp),
+                modifier = Modifier.size(64.dp),
                 onClick = onRecordButtonClick,
             ) {
                 Icon(
