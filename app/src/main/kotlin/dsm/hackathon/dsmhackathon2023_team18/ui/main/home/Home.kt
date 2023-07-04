@@ -1,7 +1,6 @@
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.home
 
 import android.annotation.SuppressLint
-import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -108,22 +107,17 @@ fun Home(
                     .size(64.dp),
                 onClick = onRecordButtonClick,
             ) {
-                AnimatedContent(
-                    targetState = recordButtonClicked,
-                    label = "",
-                ) {
-                    Icon(
-                        painter = painterResource(
-                            if (recordButtonClicked) {
-                                R.drawable.ic_rice_cake_button_pressed
-                            } else {
-                                R.drawable.ic_rice_cake_button_default
-                            },
-                        ),
-                        contentDescription = "create new record",
-                        tint = Color.Unspecified,
-                    )
-                }
+                Icon(
+                    painter = painterResource(
+                        if (recordButtonClicked) {
+                            R.drawable.ic_rice_cake_button_pressed
+                        } else {
+                            R.drawable.ic_rice_cake_button_default
+                        },
+                    ),
+                    contentDescription = "create new record",
+                    tint = Color.Unspecified,
+                )
             }
         },
     ) {
