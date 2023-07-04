@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Primary
+import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryColor
 
 @Composable
 fun CalendarScreen(
@@ -23,7 +23,7 @@ fun CalendarScreen(
 ) {
     Column(
         modifier = modifier
-            .background(Primary)
+            .background(LocalPrimaryColor.current)
             .fillMaxSize(),
     ) {
         Banner(modifier = Modifier.height(160.dp))

@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryDdeok
 import dsm.hackathon.dsmhackathon2023_team18.R
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.calendar.CalendarScreen
 import kotlinx.coroutines.delay
@@ -110,9 +111,9 @@ fun Home(
                 Icon(
                     painter = painterResource(
                         if (recordButtonClicked) {
-                            R.drawable.ic_rice_cake_button_pressed
+                            LocalPrimaryDdeok.current.pressedResId
                         } else {
-                            R.drawable.ic_rice_cake_button_default
+                            LocalPrimaryDdeok.current.defaultResId
                         },
                     ),
                     contentDescription = "create new record",
