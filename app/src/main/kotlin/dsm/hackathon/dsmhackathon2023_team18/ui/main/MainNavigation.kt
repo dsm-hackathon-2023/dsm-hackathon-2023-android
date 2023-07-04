@@ -19,5 +19,5 @@ fun NavGraphBuilder.mainNavigation() {
 object MainDestination {
     const val route = "main"
 
-    const val home = "home"
+    const val home = this.route + "home"
 }
