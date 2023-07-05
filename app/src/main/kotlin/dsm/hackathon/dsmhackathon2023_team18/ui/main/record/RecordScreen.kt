@@ -46,6 +46,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -88,12 +89,14 @@ fun RecordScreen(
         contract = ActivityResultContracts.PickVisualMedia(),
         onResult = { if (it != null) selectedImage = it },
     )
+    val scope = rememberCoroutineScope()
 
+    val scroll = rememberScrollState()
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(Color.White)
-            .verticalScroll(rememberScrollState()),
+            .verticalScroll(scroll),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         TopAppBar(
@@ -117,36 +120,38 @@ fun RecordScreen(
             colors = topAppBarColors,
         )
 
-
-        AnimatedVisibility(
-            visible = true,
+        Column(
+            verticalArrangement = Arrangement.spacedBy(24.dp),
         ) {
-            Column(
-                verticalArrangement = Arrangement.spacedBy(24.dp),
-            ) {
-                DdeokMessage(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    message = "안녕하세요. 오늘 하루도 잘 보내셨나요?\n오늘 당신의 하루는 어땠는지 말씀해주세요!",
-                )
-                DdeokPicker(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    selectedMood = selectedDdeokMood,
-                    onMoodSelect = onDdeokMoodSelected,
-                )
-                DdeokDivider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
-                )
-            }
+            DdeokMessage(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                message = "안녕하세요. 오늘 하루도 잘 보내셨나요?\n오늘 당신의 하루는 어땠는지 말씀해주세요!",
+            )
+            DdeokPicker(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                selectedMood = selectedDdeokMood,
+                onMoodSelect = onDdeokMoodSelected,
+            )
+            DdeokDivider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+            )
         }
 
+        val isMoodVisible by remember(selectedDdeokMood) {
+            scope.launch {
+                delay(400L)
+                scroll.animateScrollTo(scroll.maxValue)
+            }
+            mutableStateOf(selectedDdeokMood != null)
+        }
         AnimatedVisibility(
-            visible = selectedDdeokMood != null,
+            visible = isMoodVisible,
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(24.dp),
@@ -168,6 +173,10 @@ fun RecordScreen(
         }
 
         val isMoodNotEmpty by remember(selectedMoods.size) {
+            scope.launch {
+                delay(400L)
+                scroll.animateScrollTo(scroll.maxValue)
+            }
             mutableStateOf(selectedMoods.toList().isNotEmpty())
         }
         AnimatedVisibility(
@@ -200,8 +209,15 @@ fun RecordScreen(
             }
         }
 
+        val diaryTextIsNotBlank by remember(diaryText) {
+            scope.launch {
+                delay(400L)
+                scroll.animateScrollTo(scroll.maxValue)
+            }
+            mutableStateOf(diaryText.isNotEmpty())
+        }
         AnimatedVisibility(
-            visible = diaryText.isNotBlank(),
+            visible = diaryTextIsNotBlank,
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(24.dp),
@@ -236,8 +252,15 @@ fun RecordScreen(
             }
         }
 
+        val imageIsNotNull by remember(selectedImage) {
+            scope.launch {
+                delay(400L)
+                scroll.animateScrollTo(scroll.maxValue)
+            }
+            mutableStateOf(selectedImage != null)
+        }
         AnimatedVisibility(
-            visible = selectedImage != null,
+            visible = imageIsNotNull,
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(24.dp),
@@ -520,11 +543,15 @@ private fun ImagePicker(
             color = Gray1,
             textAlign = TextAlign.Center,
         )
+        val focus = LocalFocusManager.current
         GlideImage(
             modifier = Modifier
                 .size(340.dp)
                 .clip(RoundedCornerShape(12.dp))
-                .clickable(onClick = onSelectImage),
+                .clickable {
+                    focus.clearFocus()
+                    onSelectImage()
+                },
             imageModel = { selectedImage ?: R.drawable.img_select_image },
         )
     }
