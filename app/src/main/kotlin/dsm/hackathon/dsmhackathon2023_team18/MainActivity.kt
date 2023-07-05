@@ -20,8 +20,8 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import dsm.hackathon.dsmhackathon2023_team18.domain.PrimaryDdeok
+import dsm.hackathon.dsmhackathon2023_team18.ui.auth.AuthDestination
 import dsm.hackathon.dsmhackathon2023_team18.ui.auth.authNavigation
-import dsm.hackathon.dsmhackathon2023_team18.ui.main.MainDestination
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.mainNavigation
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.DSMHackathon2023Team18Theme
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.PrimaryGreen
@@ -70,7 +70,7 @@ fun OnuiApp() {
             val navController = rememberNavController()
             NavHost(
                 navController = navController,
-                startDestination = MainDestination.route,
+                startDestination = AuthDestination.route,
                 enterTransition = { slideIntoContainer(AnimatedContentTransitionScope.SlideDirection.Start) },
                 exitTransition = { fadeOut(tween(delayMillis = 10)) },
                 popEnterTransition = { EnterTransition.None },
@@ -82,7 +82,7 @@ fun OnuiApp() {
                 },
             ) {
                 mainNavigation(navController)
-                authNavigation()
+                authNavigation(navController)
             }
         }
     }
