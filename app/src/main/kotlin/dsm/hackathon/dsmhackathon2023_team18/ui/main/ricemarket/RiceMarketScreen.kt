@@ -278,8 +278,7 @@ private fun TaskCard(
             .padding(
                 horizontal = 16.dp,
                 vertical = 12.dp,
-            )
-            .clickable(onClick = onButtonClick),
+            ),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -316,7 +315,7 @@ private fun TaskCard(
         }
         PrimaryButton(
             text = "완료하기",
-            onClick = { },
+            onClick = onButtonClick,
         )
     }
 }
