@@ -8,6 +8,7 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.Home
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.record.RecordScreen
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.ricemarket.navigateToRiceMarketNav
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.ricemarket.riceMarketNavigation
+import dsm.hackathon.dsmhackathon2023_team18.ui.main.timeline.navigateToTimelineNav
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.timeline.timelineNavigation
 
 fun NavGraphBuilder.mainNavigation(
@@ -21,6 +22,7 @@ fun NavGraphBuilder.mainNavigation(
             Home(
                 onNavigateToRecord = navController::navigateToRecord,
                 onNavigateToRiceMarketNav = navController::navigateToRiceMarketNav,
+                onNavigateToTimelineNav = navController::navigateToTimelineNav,
             )
         }
         composable(MainDestination.record) {

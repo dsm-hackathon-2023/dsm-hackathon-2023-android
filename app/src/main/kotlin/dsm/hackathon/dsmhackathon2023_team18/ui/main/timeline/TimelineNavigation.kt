@@ -1,5 +1,7 @@
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.timeline
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -20,7 +22,10 @@ fun NavGraphBuilder.timelineNavigation(
         startDestination = TimelineNavigation.main,
     ) {
         composable(TimelineNavigation.main) {
-
+            TimelineScreen(
+                modifier = Modifier.fillMaxSize(),
+                onNavigateUp = navController::navigateUp,
+            )
         }
         composable(TimelineNavigation.details) {
 
