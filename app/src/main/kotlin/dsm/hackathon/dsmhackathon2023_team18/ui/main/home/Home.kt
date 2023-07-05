@@ -1,4 +1,4 @@
-package dsm.hackathon.dsmhackathon2023_team18.ui.main
+package dsm.hackathon.dsmhackathon2023_team18.ui.main.home
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Spacer
