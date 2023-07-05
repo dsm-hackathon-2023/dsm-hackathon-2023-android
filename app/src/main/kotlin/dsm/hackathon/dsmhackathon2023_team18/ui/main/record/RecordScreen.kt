@@ -56,7 +56,7 @@ fun RecordScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         Spacer(modifier = Modifier.height(24.dp))
         TopAppBar(
