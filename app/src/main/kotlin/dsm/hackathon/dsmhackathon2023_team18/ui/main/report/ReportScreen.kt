@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -40,6 +42,7 @@ fun ReportScreen(
     )
     Column(
         modifier = modifier
+            .verticalScroll(rememberScrollState())
             .fillMaxSize()
             .background(Color.White),
         verticalArrangement = Arrangement.spacedBy(24.dp),
@@ -102,5 +105,21 @@ fun ReportScreen(
             painter = painterResource(id = R.drawable.img_graph_report_2),
             contentDescription = null,
         )
+        Spacer(modifier = Modifier.height(24.dp))
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "감정 총합",
+            style = MaterialTheme.typography.bodySmall,
+            color = Gray1,
+            textAlign = TextAlign.Center,
+        )
+        Image(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            painter = painterResource(id = R.drawable.img_graph_report_3),
+            contentDescription = null,
+        )
+        Spacer(modifier = Modifier.height(24.dp))
     }
 }
