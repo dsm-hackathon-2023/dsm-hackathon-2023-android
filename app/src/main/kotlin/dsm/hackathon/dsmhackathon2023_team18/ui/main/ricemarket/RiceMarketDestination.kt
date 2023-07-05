@@ -9,26 +9,26 @@ fun NavGraphBuilder.riceMarketNavigation(
     navController: NavHostController,
 ) {
     navigation(
-        route = RiceMarketNavigation.route,
-        startDestination = RiceMarketNavigation.main,
+        route = RiceMarketDestination.route,
+        startDestination = RiceMarketDestination.main,
     ) {
-        composable(RiceMarketNavigation.main) {
+        composable(RiceMarketDestination.main) {
             RiceMarketScreen(
                 onNavigateUp = {
                     navController.navigateUp()
                 },
             )
         }
-        composable(RiceMarketNavigation.sunMarket) {
+        composable(RiceMarketDestination.sunMarket) {
 
         }
-        composable(RiceMarketNavigation.moonMarket) {
+        composable(RiceMarketDestination.moonMarket) {
 
         }
     }
 }
 
-object RiceMarketNavigation {
+object RiceMarketDestination {
     const val route = "riceMarket"
 
     const val main = this.route + "/main"
@@ -37,7 +37,7 @@ object RiceMarketNavigation {
 }
 
 fun NavHostController.navigateToRiceMarketNav() {
-    this.navigate(RiceMarketNavigation.route) {
+    this.navigate(RiceMarketDestination.route) {
         launchSingleTop = true
         restoreState = true
     }
