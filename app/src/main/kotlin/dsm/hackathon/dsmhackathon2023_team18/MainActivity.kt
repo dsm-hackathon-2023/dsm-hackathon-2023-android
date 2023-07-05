@@ -43,8 +43,10 @@ class MainActivity : ComponentActivity() {
             statusBarColor = Color.Transparent.toArgb()
             navigationBarColor = Color.Transparent.toArgb()
             isNavigationBarContrastEnforced = false
+            setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         }
         WindowCompat.setDecorFitsSystemWindows(window, false)
+
         val primaryDdeok = PrimaryDdeok.values().random()
 
         setContent {

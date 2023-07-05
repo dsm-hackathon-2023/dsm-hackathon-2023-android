@@ -164,11 +164,6 @@ fun RecordScreen(
                     selectedMoods = selectedMoods,
                     onMoodSelect = onMoodSelected,
                 )
-                DdeokDivider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
-                )
             }
         }
 
@@ -181,6 +176,11 @@ fun RecordScreen(
             Column(
                 verticalArrangement = Arrangement.spacedBy(24.dp),
             ) {
+                DdeokDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                )
                 DdeokMessage(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -190,14 +190,12 @@ fun RecordScreen(
                 Diary(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
+                        .padding(
+                            horizontal = 16.dp,
+                            vertical = 20.dp,
+                        ),
                     textValue = diaryText,
                     onTextValueChange = onDiaryTextChanged,
-                )
-                DdeokDivider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
                 )
             }
         }
@@ -208,6 +206,11 @@ fun RecordScreen(
             Column(
                 verticalArrangement = Arrangement.spacedBy(24.dp),
             ) {
+                DdeokDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                )
                 DdeokMessage(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -217,7 +220,10 @@ fun RecordScreen(
                 ImagePicker(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
+                        .padding(
+                            horizontal = 16.dp,
+                            vertical = 20.dp,
+                        ),
                     selectedImage = selectedImage,
                     onSelectImage = {
                         photoPickerLauncher.launch(
@@ -226,11 +232,6 @@ fun RecordScreen(
                             ),
                         )
                     },
-                )
-                DdeokDivider(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp)
                 )
             }
         }
@@ -241,6 +242,11 @@ fun RecordScreen(
             Column(
                 verticalArrangement = Arrangement.spacedBy(24.dp),
             ) {
+                DdeokDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                )
                 DdeokMessage(
                     modifier = Modifier
                         .fillMaxWidth()
