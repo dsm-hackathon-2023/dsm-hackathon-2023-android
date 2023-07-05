@@ -1,7 +1,6 @@
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.timeline
 
 import android.annotation.SuppressLint
-import android.webkit.JavascriptInterface
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -177,12 +176,5 @@ fun TimelineScreen(
                     .background(listFadeBrush),
             )
         }
-    }
-}
-
-class JsBridge {
-    @JavascriptInterface
-    fun bridge() {
-        println("MSGMSGMSGMSG")
     }
 }

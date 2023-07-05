@@ -24,12 +24,8 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.auth.AuthDestination
 import dsm.hackathon.dsmhackathon2023_team18.ui.auth.authNavigation
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.mainNavigation
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.DSMHackathon2023Team18Theme
-import dsm.hackathon.dsmhackathon2023_team18.ui.theme.PrimaryGreen
-import dsm.hackathon.dsmhackathon2023_team18.ui.theme.PrimaryPink
-import dsm.hackathon.dsmhackathon2023_team18.ui.theme.PrimaryYellow
 
 val LocalPrimaryColor = staticCompositionLocalOf<Color> { error("not initialized") }
-private val primaryColors = listOf(PrimaryGreen, PrimaryPink, PrimaryYellow)
 val LocalPrimaryDdeok = staticCompositionLocalOf<PrimaryDdeok> { error("not initialized") }
 
 class MainActivity : ComponentActivity() {
