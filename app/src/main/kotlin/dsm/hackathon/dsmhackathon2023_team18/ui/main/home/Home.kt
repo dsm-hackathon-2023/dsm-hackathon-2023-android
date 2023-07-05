@@ -53,6 +53,7 @@ fun Home(
     val topAppBarColors = TopAppBarDefaults.smallTopAppBarColors(
         containerColor = Color.Transparent,
     )
+
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
