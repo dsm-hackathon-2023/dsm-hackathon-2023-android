@@ -57,6 +57,7 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray2
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray5
 import dsm.hackathon.dsmhackathon2023_team18.ui.util.DdeokDivider
+import dsm.hackathon.dsmhackathon2023_team18.ui.util.PrimaryButton
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -205,7 +206,14 @@ fun RecordScreen(
                 .padding(horizontal = 16.dp),
             message = "오늘 하루도 수고하셨어요! 항상 응원하고 있어요 🥰",
         )
-        Spacer(modifier = Modifier.height(56.dp))
+        PrimaryButton(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            text = "기록 마치기",
+            onClick = {},
+        )
+        Spacer(modifier = Modifier.height(24.dp))
     }
 }
 
