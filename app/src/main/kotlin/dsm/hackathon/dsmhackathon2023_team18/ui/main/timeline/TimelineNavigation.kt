@@ -12,7 +12,9 @@ object TimelineNavigation {
     const val details = this.route + "/details"
 }
 
-fun NavGraphBuilder.timelineNavigation() {
+fun NavGraphBuilder.timelineNavigation(
+    navController: NavHostController,
+) {
     navigation(
         route = TimelineNavigation.route,
         startDestination = TimelineNavigation.main,
