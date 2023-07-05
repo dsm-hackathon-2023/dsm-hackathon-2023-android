@@ -336,10 +336,21 @@ private fun MarketCards(
                 .weight(1f)
                 .clip(RoundedCornerShape(20.dp))
                 .clickable(onClick = onSunMarketClicked),
+            contentAlignment = Alignment.TopStart,
         ) {
             Image(
                 painter = painterResource(id = R.drawable.bg_rice_market_sun_market),
                 contentDescription = "sun market",
+            )
+            Text(
+                modifier = Modifier.padding(
+                    start = 16.dp,
+                    top = 12.dp,
+                ),
+                text = "해님상점",
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.SemiBold,
+                color = Gray1,
             )
         }
 
@@ -348,10 +359,21 @@ private fun MarketCards(
                 .weight(1f)
                 .clip(RoundedCornerShape(20.dp))
                 .clickable(onClick = onMoonMarketClicked),
+            contentAlignment = Alignment.TopStart,
         ) {
             Image(
                 painter = painterResource(id = R.drawable.bg_rice_market_moon_market),
-                contentDescription = "sun market",
+                contentDescription = "moon market",
+            )
+            Text(
+                modifier = Modifier.padding(
+                    start = 16.dp,
+                    top = 12.dp,
+                ),
+                text = "달님상점",
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.SemiBold,
+                color = Gray1,
             )
         }
     }
