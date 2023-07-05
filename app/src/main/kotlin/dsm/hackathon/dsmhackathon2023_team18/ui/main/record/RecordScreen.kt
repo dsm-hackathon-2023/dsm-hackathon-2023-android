@@ -47,6 +47,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
@@ -61,6 +62,9 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray2
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray5
 import dsm.hackathon.dsmhackathon2023_team18.ui.util.DdeokDivider
 import dsm.hackathon.dsmhackathon2023_team18.ui.util.LargePrimaryButton
+import dsm.hackathon.dsmhackathon2023_team18.util.sendNotification
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -92,6 +96,7 @@ fun RecordScreen(
         onResult = { if (it != null) selectedImage = it },
     )
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) { onDdeokMoodSelected(initialMood) }
 
@@ -287,7 +292,21 @@ fun RecordScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     text = "기록 마치기",
-                    onClick = onNavigateUp,
+                    onClick = {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            delay(4000L)
+                            context.sendNotification(
+                                title = "어흥‼️ " + when (selectedDdeokMood) {
+                                    DdeokMood.VERY_GOOD, DdeokMood.GOOD -> "오늘은 기분이 좋으시군요!"
+                                    DdeokMood.NORMAL -> "오늘 하루도 힘내봅시다!"
+                                    DdeokMood.BAD, DdeokMood.VERY_BAD -> "오늘 하루 우울한 날이네요."
+                                    null -> ""
+                                },
+                                content = "새로운 과제에 도전해보시는게 어떠세요?",
+                            )
+                        }
+                        onNavigateUp()
+                    },
                 )
                 Spacer(modifier = Modifier.height(24.dp))
             }

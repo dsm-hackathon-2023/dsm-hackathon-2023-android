@@ -24,7 +24,6 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.auth.AuthDestination
 import dsm.hackathon.dsmhackathon2023_team18.ui.auth.authNavigation
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.mainNavigation
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.DSMHackathon2023Team18Theme
-import dsm.hackathon.dsmhackathon2023_team18.util.sendNotification
 
 val LocalPrimaryColor = staticCompositionLocalOf<Color> { error("not initialized") }
 val LocalPrimaryDdeok = staticCompositionLocalOf<PrimaryDdeok> { error("not initialized") }
@@ -46,7 +45,6 @@ class MainActivity : ComponentActivity() {
 
         val primaryDdeok = PrimaryDdeok.values().random()
 
-        this.sendNotification("TITLE ", "CONTENT!!")
         setContent {
             CompositionLocalProvider(
                 LocalPrimaryColor provides primaryDdeok.color,
