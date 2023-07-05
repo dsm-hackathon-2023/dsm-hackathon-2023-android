@@ -22,15 +22,16 @@ fun Context.sendNotification(
     val pendingIntent: PendingIntent = PendingIntent.getActivity(
         this, 0, intent, PendingIntent.FLAG_MUTABLE,
     )
-    val builder = NotificationCompat.Builder(this, "").setSmallIcon(R.drawable.ic_tiger)
-        .setContentTitle(title).setContentText(content)
-        .setPriority(NotificationCompat.PRIORITY_DEFAULT).setContentIntent(pendingIntent)
     val name = "Tiger"
     val descriptionText = "Tiger gives you some advices"
     val importance = NotificationManager.IMPORTANCE_DEFAULT
     val channel = NotificationChannel("ch_onui_notification", name, importance).apply {
         description = descriptionText
     }
+    val builder =
+        NotificationCompat.Builder(this, "ch_onui_notification").setSmallIcon(R.drawable.ic_tiger)
+            .setContentTitle(title).setContentText(content)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT).setContentIntent(pendingIntent)
     // Register the channel with the system
     val notificationManager: NotificationManager =
         getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
