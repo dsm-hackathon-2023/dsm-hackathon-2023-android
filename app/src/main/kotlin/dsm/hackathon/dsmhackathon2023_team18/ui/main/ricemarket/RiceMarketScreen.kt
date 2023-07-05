@@ -51,6 +51,8 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.util.PrimaryButton
 fun RiceMarketScreen(
     modifier: Modifier = Modifier,
     onNavigateUp: () -> Unit,
+    onNavigateToSunMarket: () -> Unit,
+    onNavigateToMoonMarket: () -> Unit,
 ) {
     val topAppBarColors = TopAppBarDefaults.smallTopAppBarColors(
         containerColor = Color.Transparent,
@@ -132,8 +134,8 @@ fun RiceMarketScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            onSunMarketClicked = {},
-            onMoonMarketClicked = {},
+            onSunMarketClicked = onNavigateToSunMarket,
+            onMoonMarketClicked = onNavigateToMoonMarket,
         )
     }
 }
@@ -346,7 +348,7 @@ private fun MarketCards(
                     start = 16.dp,
                     top = 12.dp,
                 ),
-                text = "해님상점",
+                text = "햇님상점",
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.SemiBold,
                 color = Gray1,

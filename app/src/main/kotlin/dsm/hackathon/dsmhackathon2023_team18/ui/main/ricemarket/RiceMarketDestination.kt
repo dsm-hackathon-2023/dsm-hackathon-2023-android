@@ -4,6 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import dsm.hackathon.dsmhackathon2023_team18.ui.main.ricemarket.sunmarket.SunMarketScreen
 
 fun NavGraphBuilder.riceMarketNavigation(
     navController: NavHostController,
@@ -14,13 +15,15 @@ fun NavGraphBuilder.riceMarketNavigation(
     ) {
         composable(RiceMarketDestination.main) {
             RiceMarketScreen(
-                onNavigateUp = {
-                    navController.navigateUp()
-                },
+                onNavigateUp = navController::navigateUp,
+                onNavigateToSunMarket = navController::navigateToSunMarket,
+                onNavigateToMoonMarket ={},
             )
         }
         composable(RiceMarketDestination.sunMarket) {
-
+            SunMarketScreen(
+                onNavigateUp = navController::navigateUp,
+            )
         }
         composable(RiceMarketDestination.moonMarket) {
 
@@ -38,6 +41,13 @@ object RiceMarketDestination {
 
 fun NavHostController.navigateToRiceMarketNav() {
     this.navigate(RiceMarketDestination.route) {
+        launchSingleTop = true
+        restoreState = true
+    }
+}
+
+fun NavHostController.navigateToSunMarket() {
+    this.navigate(RiceMarketDestination.sunMarket) {
         launchSingleTop = true
         restoreState = true
     }
