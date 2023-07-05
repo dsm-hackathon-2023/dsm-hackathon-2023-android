@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -80,6 +81,7 @@ fun RecordScreen(
         }
         Unit
     }
+    val (selectedChips, onChipSelected) = remember { mutableStateOf<List<Mood>>(listOf()) }
     val (diaryText, onDiaryTextChanged) = remember { mutableStateOf("") }
 
     var selectedImage by remember { mutableStateOf<Uri?>(null) }
@@ -116,104 +118,144 @@ fun RecordScreen(
             },
             colors = topAppBarColors,
         )
-        DdeokMessage(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            message = "안녕하세요. 오늘 하루도 잘 보내셨나요?\n오늘 당신의 하루는 어땠는지 말씀해주세요!",
-        )
-        DdeokPicker(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            selectedMood = selectedDdeokMood,
-            onMoodSelect = onDdeokMoodSelected,
-        )
-        DdeokDivider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
-
-        DdeokMessage(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            message = "그렇군요. 오늘 하루도 고생 많으셨습니다.오늘은 어떤 감정들을 느꼈는지 찰떡에게 말씀해주세요!",
-        )
-        MoodChips(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            selectedMoods = selectedMoods,
-            onMoodSelect = onMoodSelected,
-        )
-        DdeokDivider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
 
 
-        DdeokMessage(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            message = "오늘의 감정 키워드는 “0000”, “0000”, “0000” 이군요. 이제 오늘 하루 느낀 감정, 기분 사건을 떠올리며 일기를 작성해보세요.",
-        )
-        Diary(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            textValue = diaryText,
-            onTextValueChange = onDiaryTextChanged,
-        )
-        DdeokDivider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
-
-
-        DdeokMessage(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            message = "오늘을 더욱 돋보이게 할 사진이 있으신가요? 일기와 함께 기록하고 싶은 사진을 업로드 해보세요.",
-        )
-        ImagePicker(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            selectedImage = selectedImage,
-            onSelectImage = {
-                photoPickerLauncher.launch(
-                    PickVisualMediaRequest(
-                        mediaType = ActivityResultContracts.PickVisualMedia.ImageOnly,
-                    ),
+        AnimatedVisibility(
+            visible = true,
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(24.dp),
+            ) {
+                DdeokMessage(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    message = "안녕하세요. 오늘 하루도 잘 보내셨나요?\n오늘 당신의 하루는 어땠는지 말씀해주세요!",
                 )
-            },
-        )
-        DdeokDivider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
+                DdeokPicker(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    selectedMood = selectedDdeokMood,
+                    onMoodSelect = onDdeokMoodSelected,
+                )
+                DdeokDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                )
+            }
+        }
 
-        DdeokMessage(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            message = "오늘 하루도 수고하셨어요! 항상 응원하고 있어요 🥰",
-        )
-        PrimaryButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            text = "기록 마치기",
-            onClick = {},
-        )
-        Spacer(modifier = Modifier.height(24.dp))
+        AnimatedVisibility(
+            visible = selectedDdeokMood != null,
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(24.dp),
+            ) {
+                DdeokMessage(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    message = "그렇군요. 오늘 하루도 고생 많으셨습니다.오늘은 어떤 감정들을 느꼈는지 찰떡에게 말씀해주세요!",
+                )
+                MoodChips(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    selectedMoods = selectedMoods,
+                    onMoodSelect = onMoodSelected,
+                )
+                DdeokDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                )
+            }
+        }
+
+        AnimatedVisibility(
+            visible = selectedChips.isNotEmpty(),
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(24.dp),
+            ) {
+                DdeokMessage(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    message = "오늘의 감정 키워드는 “0000”, “0000”, “0000” 이군요. 이제 오늘 하루 느낀 감정, 기분 사건을 떠올리며 일기를 작성해보세요.",
+                )
+                Diary(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    textValue = diaryText,
+                    onTextValueChange = onDiaryTextChanged,
+                )
+                DdeokDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                )
+            }
+        }
+
+        AnimatedVisibility(
+            visible = diaryText.isNotBlank(),
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(24.dp),
+            ) {
+                DdeokMessage(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    message = "오늘을 더욱 돋보이게 할 사진이 있으신가요? 일기와 함께 기록하고 싶은 사진을 업로드 해보세요.",
+                )
+                ImagePicker(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    selectedImage = selectedImage,
+                    onSelectImage = {
+                        photoPickerLauncher.launch(
+                            PickVisualMediaRequest(
+                                mediaType = ActivityResultContracts.PickVisualMedia.ImageOnly,
+                            ),
+                        )
+                    },
+                )
+                DdeokDivider(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                )
+            }
+        }
+
+        AnimatedVisibility(
+            visible = selectedImage != null,
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(24.dp),
+            ) {
+                DdeokMessage(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    message = "오늘 하루도 수고하셨어요! 항상 응원하고 있어요 🥰",
+                )
+                PrimaryButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    text = "기록 마치기",
+                    onClick = {},
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+            }
+        }
     }
 }
 
@@ -333,7 +375,10 @@ private fun DdeokPicker(
 private enum class Mood(
     val text: String,
 ) {
-    EXCITING("신나요"), COMFORTABLE("편안해요"), PROUD("뿌듯해요"), EXPECTED("기대돼요"), HAPPY("행복해요"), EAGER("의욕적이에요"), FLUTTERING(
+    EXCITING("신나요"), COMFORTABLE("편안해요"), PROUD("뿌듯해요"), EXPECTED("기대돼요"), HAPPY("행복해요"), EAGER(
+        "의욕적이에요"
+    ),
+    FLUTTERING(
         "설레요"
     ),
     FRESH("상쾌해요"), DEPRESSED("우울해요"), LONELY("외로워요"), UNEASY("불안해요"), SAD("슬퍼요"), ANGRY("화나요"), BURDENED(
