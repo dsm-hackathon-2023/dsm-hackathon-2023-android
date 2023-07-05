@@ -34,6 +34,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryDdeok
 import dsm.hackathon.dsmhackathon2023_team18.domain.DdeokMood
+import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray2
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray5
 import kotlinx.coroutines.delay
@@ -59,7 +60,10 @@ fun RecordScreen(
         Spacer(modifier = Modifier.height(24.dp))
         TopAppBar(
             title = {
-                Text(text = "감정 기록하기")
+                Text(
+                    text = "감정 기록하기",
+                    color = Gray1,
+                )
             },
             navigationIcon = {
                 IconButton(
@@ -68,6 +72,7 @@ fun RecordScreen(
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
                         contentDescription = "back",
+                        tint = Gray1,
                     )
                 }
             },
@@ -183,7 +188,12 @@ private fun DdeokPicker(
                 width = 1.dp,
                 color = Gray5,
                 shape = RoundedCornerShape(20.dp),
+            )
+            .padding(
+                horizontal = 16.dp,
+                vertical = 12.dp,
             ),
+        horizontalArrangement = Arrangement.Center,
     ) {
         DdeokMood.values().forEach { mood ->
             IconButton(
