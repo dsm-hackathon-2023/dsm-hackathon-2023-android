@@ -1,5 +1,6 @@
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.ricemarket
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -125,6 +126,14 @@ fun RiceMarketScreen(
             point = 3000,
             subject = "자신만의 소확행 떠올리기",
             onButtonClick = {},
+        )
+
+        MarketCards(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            onSunMarketClicked = {},
+            onMoonMarketClicked = {},
         )
     }
 }
@@ -309,5 +318,41 @@ private fun TaskCard(
             text = "완료하기",
             onClick = { },
         )
+    }
+}
+
+@Composable
+private fun MarketCards(
+    modifier: Modifier = Modifier,
+    onSunMarketClicked: () -> Unit,
+    onMoonMarketClicked: () -> Unit,
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .clip(RoundedCornerShape(20.dp))
+                .clickable(onClick = onSunMarketClicked),
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.bg_rice_market_sun_market),
+                contentDescription = "sun market",
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .clip(RoundedCornerShape(20.dp))
+                .clickable(onClick = onMoonMarketClicked),
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.bg_rice_market_moon_market),
+                contentDescription = "sun market",
+            )
+        }
     }
 }
