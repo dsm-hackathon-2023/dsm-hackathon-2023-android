@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -83,17 +84,29 @@ fun RecordScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            message = "안녕하세요. 오늘 하루도 잘 보내셨나요? \n오늘 당신의 하루는 어땠는지 말씀해주세요!",
+            message = "안녕하세요. 오늘 하루도 잘 보내셨나요?\n오늘 당신의 하루는 어땠는지 말씀해주세요!",
         )
         DdeokPicker(
             selectedMood = selectedMood,
             onMoodSelected = onMoodSelected,
         )
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        )
         DdeokMessage(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            message = "안녕하세요. 오늘 하루도 잘 보내셨나요? \n오늘 당신의 하루는 어땠는지 말씀해주세요!",
+            message = "그렇군요. 오늘 하루도 고생 많으셨습니다.\n오늘은 어떤 감정들을 느꼈는지 찰떡에게\n말씀해주세요!",
+        )
+
+
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
         )
         DdeokMessage(
             modifier = Modifier
@@ -101,11 +114,25 @@ fun RecordScreen(
                 .padding(horizontal = 16.dp),
             message = "안녕하세요. 오늘 하루도 잘 보내셨나요? \n오늘 당신의 하루는 어땠는지 말씀해주세요!",
         )
+
+
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        )
         DdeokMessage(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             message = "안녕하세요. 오늘 하루도 잘 보내셨나요? \n오늘 당신의 하루는 어땠는지 말씀해주세요!",
+        )
+
+
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
         )
         DdeokMessage(
             modifier = Modifier
