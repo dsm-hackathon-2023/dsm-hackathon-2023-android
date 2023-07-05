@@ -62,6 +62,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     implementation("com.github.skydoves:landscapist-glide:2.1.11")
+    implementation("com.google.accompanist:accompanist-webview:0.24.13-rc")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.31.0-alpha")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")

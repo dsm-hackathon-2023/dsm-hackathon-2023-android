@@ -2,7 +2,6 @@ package dsm.hackathon.dsmhackathon2023_team18.ui.main.calendar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -20,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
@@ -27,6 +27,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import com.google.accompanist.web.WebView
+import com.google.accompanist.web.rememberWebViewState
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryColor
 import dsm.hackathon.dsmhackathon2023_team18.R
 
@@ -42,7 +44,7 @@ fun CalendarScreen(
         Banner(
             modifier = Modifier.height(240.dp),
         )
-        Box(
+        Column(
             modifier = modifier
                 .weight(1f)
                 .fillMaxSize()
@@ -54,7 +56,18 @@ fun CalendarScreen(
                     ),
                 ),
         ) {
-
+            val webViewState = rememberWebViewState(url = "https://www.naver.com/")
+            WebView(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .clip(
+                        RoundedCornerShape(
+                            topStart = 20.dp,
+                            topEnd = 20.dp,
+                        ),
+                    ),
+                state = webViewState,
+            )
         }
     }
 }
