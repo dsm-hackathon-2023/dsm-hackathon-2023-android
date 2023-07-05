@@ -178,7 +178,7 @@ fun RecordScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            message = "오늘을 더욱 돋보이게 할 사진이 있으신가요? 일기와 함께 기록하고 싶은 사진을 업로드 해보세요."
+            message = "오늘을 더욱 돋보이게 할 사진이 있으신가요? 일기와 함께 기록하고 싶은 사진을 업로드 해보세요.",
         )
         ImagePicker(
             modifier = Modifier
@@ -193,7 +193,18 @@ fun RecordScreen(
                 )
             },
         )
+        DdeokDivider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        )
 
+        DdeokMessage(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            message = "오늘 하루도 수고하셨어요! 항상 응원하고 있어요 🥰",
+        )
         Spacer(modifier = Modifier.height(56.dp))
     }
 }
