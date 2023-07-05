@@ -38,7 +38,7 @@ fun SunMarketScreen(
         modifier = modifier
             .background(Color.White)
             .fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         TopAppBar(
             title = {

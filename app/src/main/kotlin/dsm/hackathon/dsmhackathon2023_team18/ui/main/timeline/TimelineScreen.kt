@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.timeline
 
 import android.annotation.SuppressLint
@@ -21,6 +19,8 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -42,6 +42,7 @@ import androidx.compose.ui.util.lerp
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryColor
 import dsm.hackathon.dsmhackathon2023_team18.R
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
+import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray6
 import kotlin.math.absoluteValue
 
 val listFadeBrush: Brush
@@ -53,7 +54,7 @@ val listFadeBrush: Brush
         ),
     )
 
-@OptIn(ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun TimelineScreen(
@@ -112,8 +113,18 @@ fun TimelineScreen(
             VerticalPager(
                 modifier = Modifier.fillMaxSize(),
                 state = pagerState,
-                contentPadding = PaddingValues(top = 72.dp),
+                contentPadding = PaddingValues(top = 84.dp),
             ) { page ->
+                when (page) {
+                    1, 2 -> {
+                        Icon(
+                            modifier = Modifier.fillMaxWidth(),
+                            imageVector = Icons.Filled.KeyboardArrowUp,
+                            contentDescription = null,
+                            tint = Gray6,
+                        )
+                    }
+                }
                 Image(
                     modifier = Modifier
                         .graphicsLayer {
@@ -148,6 +159,16 @@ fun TimelineScreen(
                     ),
                     contentDescription = "list item",
                 )
+                when (page) {
+                    0, 1 -> {
+                        Icon(
+                            modifier = Modifier.fillMaxWidth(),
+                            imageVector = Icons.Filled.KeyboardArrowDown,
+                            contentDescription = null,
+                            tint = Gray6,
+                        )
+                    }
+                }
             }
             Spacer(
                 Modifier
