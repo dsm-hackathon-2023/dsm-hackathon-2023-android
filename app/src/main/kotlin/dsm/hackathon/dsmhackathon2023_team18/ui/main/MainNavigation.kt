@@ -2,8 +2,11 @@ package dsm.hackathon.dsmhackathon2023_team18.ui.main
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import androidx.navigation.navigation
+import dsm.hackathon.dsmhackathon2023_team18.domain.DdeokMood
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.Home
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.record.RecordScreen
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.report.ReportScreen
@@ -30,10 +33,21 @@ fun NavGraphBuilder.mainNavigation(
                 onNavigateToReport = navController::navigateToReport,
             )
         }
-        composable(MainDestination.record) {
-            RecordScreen(
-                onNavigateUp = navController::navigateUp,
-            )
+        composable(
+            route = MainDestination.record + "/{mood}",
+            arguments = listOf(
+                navArgument("mood") {
+                    NavType.StringType
+                }
+            ),
+        ) { backStackEntry ->
+            backStackEntry.arguments?.let {
+                val mood = it.getString("mood")!!
+                RecordScreen(
+                    initialMood = DdeokMood.valueOf(mood),
+                    onNavigateUp = navController::navigateUp,
+                )
+            }
         }
         composable(MainDestination.report) {
             ReportScreen(
@@ -54,8 +68,8 @@ object MainDestination {
     const val record = this.route + "/record"
 }
 
-fun NavHostController.navigateToRecord() {
-    this.navigate(MainDestination.record) {
+fun NavHostController.navigateToRecord(mood: DdeokMood) {
+    this.navigate(MainDestination.record + "/$mood") {
         launchSingleTop = true
         restoreState = true
     }

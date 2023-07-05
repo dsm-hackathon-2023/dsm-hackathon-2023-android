@@ -32,8 +32,11 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
 fun MoodModal(
     modifier: Modifier = Modifier,
     onClick: (mood: DdeokMood) -> Unit,
+    onDismissRequest: () -> Unit,
 ) {
-    Dialog(onDismissRequest = { }) {
+    Dialog(
+        onDismissRequest = onDismissRequest,
+    ) {
         Column(
             modifier = modifier.fillMaxSize(),
             horizontalAlignment = Alignment.End,
@@ -88,7 +91,7 @@ fun MoodModal(
                 )
                 Spacer(modifier = Modifier.width(20.dp))
             }
-            Spacer(modifier = Modifier.height(72.dp))
+            Spacer(modifier = Modifier.height(84.dp))
         }
     }
 }

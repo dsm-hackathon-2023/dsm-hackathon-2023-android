@@ -23,7 +23,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryDdeok
 import dsm.hackathon.dsmhackathon2023_team18.R
+import dsm.hackathon.dsmhackathon2023_team18.domain.DdeokMood
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.calendar.CalendarScreen
+import dsm.hackathon.dsmhackathon2023_team18.ui.util.MoodModal
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -32,27 +34,23 @@ import kotlinx.coroutines.launch
 @Composable
 fun Home(
     modifier: Modifier = Modifier,
-    onNavigateToRecord: () -> Unit,
+    onNavigateToRecord: (mood: DdeokMood) -> Unit,
     onNavigateToRiceMarketNav: () -> Unit,
     onNavigateToTimelineNav: () -> Unit,
     onNavigateToReport: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
+    val (shouldShowMoodModal, setMoodModalState) = remember { mutableStateOf(false) }
     var recordButtonClicked by remember { mutableStateOf(false) }
-    val onRecordButtonClick = {
-        onNavigateToRecord()
-        if (!recordButtonClicked) {
-            recordButtonClicked = true
-            scope.launch {
-                delay(1000L)
-                recordButtonClicked = false
-            }
-            Unit
-        }
-    }
     val topAppBarColors = TopAppBarDefaults.smallTopAppBarColors(
         containerColor = Color.Transparent,
     )
+    if (shouldShowMoodModal) {
+        MoodModal(
+            onClick = { mood -> onNavigateToRecord(mood) },
+            onDismissRequest = { setMoodModalState(false) },
+        )
+    }
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -60,7 +58,7 @@ fun Home(
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = { /*TODO*/ },
+                        onClick = {},
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_settings),
@@ -112,7 +110,17 @@ fun Home(
         floatingActionButton = {
             IconButton(
                 modifier = Modifier.size(64.dp),
-                onClick = onRecordButtonClick,
+                onClick = {
+                    if (!recordButtonClicked) {
+                        setMoodModalState(true)
+                        recordButtonClicked = true
+                        scope.launch {
+                            delay(1000L)
+                            recordButtonClicked = false
+                        }
+                        Unit
+                    }
+                },
             ) {
                 Icon(
                     painter = painterResource(

@@ -35,6 +35,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -67,6 +68,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun RecordScreen(
     modifier: Modifier = Modifier,
+    initialMood: DdeokMood,
     onNavigateUp: () -> Unit,
 ) {
     val topAppBarColors = TopAppBarDefaults.smallTopAppBarColors(
@@ -90,6 +92,8 @@ fun RecordScreen(
         onResult = { if (it != null) selectedImage = it },
     )
     val scope = rememberCoroutineScope()
+
+    LaunchedEffect(Unit) { onDdeokMoodSelected(initialMood) }
 
     val scroll = rememberScrollState()
     Column(
