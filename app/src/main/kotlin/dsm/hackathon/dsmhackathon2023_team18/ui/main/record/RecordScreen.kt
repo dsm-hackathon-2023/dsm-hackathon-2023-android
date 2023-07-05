@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -27,7 +28,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -386,12 +386,16 @@ private fun DdeokDiary(
             color = Gray1,
             textAlign = TextAlign.Center,
         )
-        TextField(
+        BasicTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
                     color = Gray2,
-                    shape = RoundedCornerShape(20.dp),
+                    shape = RoundedCornerShape(12.dp),
+                )
+                .padding(
+                    horizontal = 16.dp,
+                    vertical = 12.dp,
                 ),
             value = textValue,
             onValueChange = onTextValueChange,
