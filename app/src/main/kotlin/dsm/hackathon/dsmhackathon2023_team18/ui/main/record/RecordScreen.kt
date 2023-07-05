@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.record
 
 import android.net.Uri
