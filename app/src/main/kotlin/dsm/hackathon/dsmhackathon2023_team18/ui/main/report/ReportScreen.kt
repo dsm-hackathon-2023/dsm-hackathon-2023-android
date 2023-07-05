@@ -66,6 +66,13 @@ fun ReportScreen(
             colors = topAppBarColors,
         )
 
+        Image(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            painter = painterResource(id = R.drawable.img_report_tab_bar),
+            contentDescription = null,
+        )
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = "감정 흐름 그래프",
@@ -80,7 +87,7 @@ fun ReportScreen(
             painter = painterResource(id = R.drawable.img_graph_report_1),
             contentDescription = null,
         )
-        Spacer(modifier = Modifier.height(48.dp))
+        Spacer(modifier = Modifier.height(24.dp))
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = "감정 비율",
