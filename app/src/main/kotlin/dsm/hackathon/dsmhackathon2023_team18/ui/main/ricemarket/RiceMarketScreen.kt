@@ -43,6 +43,7 @@ import dsm.hackathon.dsmhackathon2023_team18.domain.DdeokMood
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray2
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray6
+import dsm.hackathon.dsmhackathon2023_team18.ui.util.PrimaryButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -288,5 +289,9 @@ private fun TaskCard(
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
+        PrimaryButton(
+            text = "완료하기",
+            onClick = { },
+        )
     }
 }

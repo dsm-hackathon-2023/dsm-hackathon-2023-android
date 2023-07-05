@@ -22,6 +22,21 @@ import androidx.compose.ui.unit.dp
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryColor
 
 @Composable
+fun LargePrimaryButton(
+    modifier: Modifier = Modifier,
+    color: Color = LocalPrimaryColor.current,
+    text: String,
+    onClick: () -> Unit,
+) {
+    PrimaryButton(
+        modifier = modifier.fillMaxWidth(),
+        color = color,
+        text = text,
+        onClick = onClick,
+    )
+}
+
+@Composable
 fun PrimaryButton(
     modifier: Modifier = Modifier,
     color: Color = LocalPrimaryColor.current,
@@ -35,7 +50,6 @@ fun PrimaryButton(
                 shape = RoundedCornerShape(20.dp),
             )
             .clip(RoundedCornerShape(20.dp))
-            .fillMaxWidth()
             .clickable(onClick = onClick)
             .padding(
                 horizontal = 16.dp,
@@ -43,7 +57,6 @@ fun PrimaryButton(
             ),
     ) {
         Text(
-            modifier = Modifier.fillMaxWidth(),
             text = text,
             color = Color.White,
             style = MaterialTheme.typography.titleMedium,
