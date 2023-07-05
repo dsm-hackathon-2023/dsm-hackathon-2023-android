@@ -61,7 +61,8 @@ fun CalendarScreen(
                             topStart = 20.dp,
                             topEnd = 20.dp,
                         ),
-                    ),
+                    )
+                    .padding(top = 24.dp),
                 state = webViewState,
             )
         }
