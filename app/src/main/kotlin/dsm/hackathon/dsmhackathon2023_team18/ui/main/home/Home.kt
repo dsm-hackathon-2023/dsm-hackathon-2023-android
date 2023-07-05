@@ -77,9 +77,9 @@ fun Home(
                         onClick = onNavigateToRiceMarketNav,
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_shop),
+                            painter = painterResource(id = R.drawable.ic_wallet),
                             tint = Color.White,
-                            contentDescription = "shop",
+                            contentDescription = "wallet",
                         )
                     }
                     Spacer(modifier = Modifier.width(8.dp))
@@ -99,7 +99,7 @@ fun Home(
                         onClick = onNavigateToTimelineNav,
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_timeline),
+                            painter = painterResource(id = R.drawable.ic_clock),
                             tint = Color.White,
                             contentDescription = "timeline",
                         )
