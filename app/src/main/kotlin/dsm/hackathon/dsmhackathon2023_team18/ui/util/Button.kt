@@ -30,6 +30,7 @@ fun LargePrimaryButton(
 ) {
     PrimaryButton(
         modifier = modifier.fillMaxWidth(),
+        textModifier = Modifier.fillMaxWidth(),
         color = color,
         text = text,
         onClick = onClick,
@@ -39,6 +40,7 @@ fun LargePrimaryButton(
 @Composable
 fun PrimaryButton(
     modifier: Modifier = Modifier,
+    textModifier: Modifier = Modifier,
     color: Color = LocalPrimaryColor.current,
     text: String,
     onClick: () -> Unit,
@@ -57,6 +59,7 @@ fun PrimaryButton(
             ),
     ) {
         Text(
+            modifier = textModifier,
             text = text,
             color = Color.White,
             style = MaterialTheme.typography.titleMedium,
