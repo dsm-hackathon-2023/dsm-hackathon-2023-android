@@ -195,19 +195,8 @@ fun RecordScreen(
                 )
             },
         )
-        DdeokDivider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        )
 
-
-        DdeokMessage(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            message = "안녕하세요. 오늘 하루도 잘 보내셨나요? 오늘 당신의 하루는 어땠는지 말씀해주세요!",
-        )
+        Spacer(modifier = Modifier.height(56.dp))
     }
 }
 
