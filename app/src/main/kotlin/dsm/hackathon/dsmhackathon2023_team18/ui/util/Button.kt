@@ -54,7 +54,7 @@ fun PrimaryButton(
 }
 
 @Composable
-fun IconButton(
+fun SocialIconButton(
     modifier: Modifier = Modifier,
     painter: Painter,
     color: Color = LocalPrimaryColor.current,
