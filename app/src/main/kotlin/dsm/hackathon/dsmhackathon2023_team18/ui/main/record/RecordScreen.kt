@@ -198,7 +198,9 @@ fun RecordScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
-                    message = "오늘의 감정 키워드는 “0000”, “0000”, “0000” 이군요. 이제 오늘 하루 느낀 감정, 기분 사건을 떠올리며 일기를 작성해보세요.",
+                    message = "오늘의 감정 키워드는 ${
+                        selectedMoods.map { it.text }.toList()
+                    } 이군요. 이제 오늘 하루 느낀 감정, 기분 사건을 떠올리며 일기를 작성해보세요.",
                 )
                 Diary(
                     modifier = Modifier
