@@ -28,6 +28,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -62,6 +63,8 @@ fun RiceMarketScreen(
     val topAppBarColors = TopAppBarDefaults.smallTopAppBarColors(
         containerColor = Color.Transparent,
     )
+    var totalPoint by remember { mutableIntStateOf(1214508) }
+    val onAddToTotalPoint = { other: Int -> totalPoint += other }
     Column(
         modifier = modifier
             .background(Color.White)
@@ -107,6 +110,7 @@ fun RiceMarketScreen(
             )
             RicePointCard(
                 modifier = Modifier.weight(0.7f),
+                point = totalPoint,
             )
         }
 
@@ -116,7 +120,7 @@ fun RiceMarketScreen(
                 .padding(horizontal = 16.dp),
             point = 10000,
             subject = "뒷산 올라가서 맑은 공기 쐐기",
-            onButtonClick = {},
+            onButtonClick = onAddToTotalPoint,
         )
         TaskCard(
             modifier = Modifier
@@ -124,7 +128,7 @@ fun RiceMarketScreen(
                 .padding(horizontal = 16.dp),
             point = 5000,
             subject = "가장 좋아하는 영화 다시 보기",
-            onButtonClick = {},
+            onButtonClick = onAddToTotalPoint,
         )
         TaskCard(
             modifier = Modifier
@@ -132,7 +136,7 @@ fun RiceMarketScreen(
                 .padding(horizontal = 16.dp),
             point = 3000,
             subject = "자신만의 소확행 떠올리기",
-            onButtonClick = {},
+            onButtonClick = onAddToTotalPoint,
         )
 
         MarketCards(
@@ -234,7 +238,7 @@ private fun MoodCard(
 private fun RicePointCard(
     modifier: Modifier = Modifier,
     mood: DdeokMood = DdeokMood.VERY_BAD,
-    point: Int = 3_362_009,
+    point: Int,
 ) {
     Column(
         modifier = modifier
