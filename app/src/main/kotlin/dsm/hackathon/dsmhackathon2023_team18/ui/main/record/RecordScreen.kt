@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.record
 
 import androidx.compose.foundation.background
@@ -25,6 +27,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -69,6 +72,7 @@ fun RecordScreen(
         }
         Unit
     }
+    val (diaryText, onDiaryTextChanged) = remember { mutableStateOf("") }
 
     Column(
         modifier = modifier
@@ -105,6 +109,9 @@ fun RecordScreen(
             message = "안녕하세요. 오늘 하루도 잘 보내셨나요?\n오늘 당신의 하루는 어땠는지 말씀해주세요!",
         )
         DdeokPicker(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
             selectedMood = selectedDdeokMood,
             onMoodSelect = onDdeokMoodSelected,
         )
@@ -138,7 +145,14 @@ fun RecordScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            message = "안녕하세요. 오늘 하루도 잘 보내셨나요? \n오늘 당신의 하루는 어땠는지 말씀해주세요!",
+            message = "오늘의 감정 키워드는\n“0000”, “0000”, “000”\n이군요.\n이제 오늘 하루 느낀 감정, 기분 사건을 떠올리며 일기를 작성해보세요.",
+        )
+        DdeokDiary(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            textValue = diaryText,
+            onTextValueChange = onDiaryTextChanged,
         )
         DdeokDivider(
             modifier = Modifier
@@ -237,7 +251,6 @@ private fun DdeokPicker(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp)
             .border(
                 width = 1.dp,
                 color = Gray5,
@@ -302,8 +315,7 @@ private fun MoodChips(
     onMoodSelect: (mood: Mood, selected: Boolean) -> Unit,
 ) {
     FlowRow(
-        modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(
+        modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(
             space = 8.dp,
             alignment = Alignment.CenterHorizontally,
         )
@@ -345,4 +357,44 @@ private fun MoodChip(
             selectedContainerColor = LocalPrimaryColor.current,
         ),
     )
+}
+
+@Composable
+private fun DdeokDiary(
+    modifier: Modifier = Modifier,
+    textValue: String,
+    onTextValueChange: (value: String) -> Unit,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .border(
+                width = 1.dp,
+                color = Gray5,
+                shape = RoundedCornerShape(20.dp),
+            )
+            .padding(
+                horizontal = 16.dp,
+                vertical = 12.dp,
+            ),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "간단한 일기를 작성해보세요.",
+            style = MaterialTheme.typography.bodySmall,
+            color = Gray1,
+            textAlign = TextAlign.Center,
+        )
+        TextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(
+                    color = Gray2,
+                    shape = RoundedCornerShape(20.dp),
+                ),
+            value = textValue,
+            onValueChange = onTextValueChange,
+        )
+    }
 }
