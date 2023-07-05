@@ -92,3 +92,11 @@ fun MoodModal(
         }
     }
 }
+
+@Composable
+fun TaskModal(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+) {
+
+}

@@ -1,4 +1,4 @@
-package dsm.hackathon.dsmhackathon2023_team18.ui.main.home
+package dsm.hackathon.dsmhackathon2023_team18.ui.main
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
@@ -26,7 +26,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryDdeok
 import dsm.hackathon.dsmhackathon2023_team18.R
-import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.calendar.CalendarScreen
+import dsm.hackathon.dsmhackathon2023_team18.ui.main.calendar.CalendarScreen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

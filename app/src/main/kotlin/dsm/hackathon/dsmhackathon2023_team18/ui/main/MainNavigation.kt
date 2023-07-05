@@ -4,7 +4,6 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.Home
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.record.RecordScreen
 
 fun NavGraphBuilder.mainNavigation(

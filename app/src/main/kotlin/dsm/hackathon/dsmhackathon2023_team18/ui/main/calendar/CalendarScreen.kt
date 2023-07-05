@@ -1,4 +1,4 @@
-package dsm.hackathon.dsmhackathon2023_team18.ui.main.home.calendar
+package dsm.hackathon.dsmhackathon2023_team18.ui.main.calendar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
