@@ -64,7 +64,7 @@ fun SocialIconButton(
     Row(
         modifier = modifier
             .background(
-                color = color,
+                color = Color.White,
                 shape = RoundedCornerShape(20.dp),
             )
             .clip(RoundedCornerShape(20.dp))
@@ -79,12 +79,12 @@ fun SocialIconButton(
         Icon(
             painter = painter,
             contentDescription = null,
-            tint = Color.Unspecified,
+            tint = LocalPrimaryColor.current,
         )
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = text,
-            color = Color.White,
+            color = LocalPrimaryColor.current,
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.SemiBold,
             textAlign = TextAlign.Center,
