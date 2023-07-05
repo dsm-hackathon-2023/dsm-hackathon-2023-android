@@ -35,5 +35,8 @@ object MainDestination {
 }
 
 fun NavHostController.navigateToRecord() {
-    this.navigate(MainDestination.record)
+    this.navigate(MainDestination.record) {
+        launchSingleTop = true
+        restoreState = true
+    }
 }
