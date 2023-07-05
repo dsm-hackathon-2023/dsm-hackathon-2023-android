@@ -281,7 +281,7 @@ fun RecordScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     text = "기록 마치기",
-                    onClick = {},
+                    onClick = onNavigateUp,
                 )
                 Spacer(modifier = Modifier.height(24.dp))
             }
