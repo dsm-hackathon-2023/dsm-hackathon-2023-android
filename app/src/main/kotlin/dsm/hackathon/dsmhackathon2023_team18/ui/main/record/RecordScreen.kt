@@ -2,8 +2,13 @@
 
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.record
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -39,13 +44,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.skydoves.landscapist.glide.GlideImage
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryColor
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryDdeok
+import dsm.hackathon.dsmhackathon2023_team18.R
 import dsm.hackathon.dsmhackathon2023_team18.domain.DdeokMood
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray2
@@ -74,6 +82,12 @@ fun RecordScreen(
         Unit
     }
     val (diaryText, onDiaryTextChanged) = remember { mutableStateOf("") }
+
+    var selectedImage by remember { mutableStateOf<Uri?>(null) }
+    val photoPickerLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.PickVisualMedia(),
+        onResult = { if (it != null) selectedImage = it },
+    )
 
     Column(
         modifier = modifier
@@ -148,7 +162,7 @@ fun RecordScreen(
                 .padding(horizontal = 16.dp),
             message = "오늘의 감정 키워드는 “0000”, “0000”, “0000” 이군요. 이제 오늘 하루 느낀 감정, 기분 사건을 떠올리며 일기를 작성해보세요.",
         )
-        DdeokDiary(
+        Diary(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
@@ -167,6 +181,19 @@ fun RecordScreen(
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             message = "오늘을 더욱 돋보이게 할 사진이 있으신가요? 일기와 함께 기록하고 싶은 사진을 업로드 해보세요."
+        )
+        ImagePicker(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            selectedImage = selectedImage,
+            onSelectImage = {
+                photoPickerLauncher.launch(
+                    PickVisualMediaRequest(
+                        mediaType = ActivityResultContracts.PickVisualMedia.ImageOnly,
+                    ),
+                )
+            },
         )
         DdeokDivider(
             modifier = Modifier
@@ -362,7 +389,7 @@ private fun MoodChip(
 }
 
 @Composable
-private fun DdeokDiary(
+private fun Diary(
     modifier: Modifier = Modifier,
     textValue: String,
     onTextValueChange: (value: String) -> Unit,
@@ -402,6 +429,43 @@ private fun DdeokDiary(
             value = textValue,
             onValueChange = onTextValueChange,
             cursorBrush = SolidColor(LocalPrimaryColor.current),
+        )
+    }
+}
+
+@Composable
+private fun ImagePicker(
+    modifier: Modifier = Modifier,
+    selectedImage: Uri?,
+    onSelectImage: () -> Unit,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .border(
+                width = 1.dp,
+                color = Gray5,
+                shape = RoundedCornerShape(20.dp),
+            )
+            .padding(
+                horizontal = 16.dp,
+                vertical = 12.dp,
+            ),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "오늘의 사진을 선택해보세요.",
+            style = MaterialTheme.typography.bodySmall,
+            color = Gray1,
+            textAlign = TextAlign.Center,
+        )
+        GlideImage(
+            modifier = Modifier
+                .size(340.dp)
+                .clip(RoundedCornerShape(12.dp))
+                .clickable(onClick = onSelectImage),
+            imageModel = { selectedImage ?: R.drawable.img_select_image },
         )
     }
 }
