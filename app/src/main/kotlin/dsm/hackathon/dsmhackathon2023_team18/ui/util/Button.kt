@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
@@ -93,6 +94,7 @@ fun PrimaryIconButton(
         contentAlignment = Alignment.Center,
     ) {
         Icon(
+            modifier = Modifier.size(22.dp),
             imageVector = Icons.Filled.Check,
             contentDescription = null,
             tint = Color.White,
