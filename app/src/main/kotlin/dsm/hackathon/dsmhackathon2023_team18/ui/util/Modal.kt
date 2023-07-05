@@ -31,6 +31,7 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
 @Composable
 fun MoodModal(
     modifier: Modifier = Modifier,
+    onClick: (mood: DdeokMood) -> Unit,
 ) {
     Dialog(onDismissRequest = { }) {
         Column(
@@ -64,9 +65,7 @@ fun MoodModal(
                 ) {
                     DdeokMood.values().forEach { mood ->
                         IconButton(
-                            onClick = {
-                                /* TODO */
-                            },
+                            onClick = { onClick(mood) },
                         ) {
                             Icon(
                                 modifier = Modifier.size(48.dp),
