@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Divider
@@ -56,7 +58,8 @@ fun RecordScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.White),
+            .background(Color.White)
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         Spacer(modifier = Modifier.height(24.dp))
@@ -95,6 +98,7 @@ fun RecordScreen(
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp)
         )
+
         DdeokMessage(
             modifier = Modifier
                 .fillMaxWidth()
@@ -254,4 +258,16 @@ private fun DdeokPicker(
             }
         }
     }
+}
+
+private enum class MoodChip(
+    val text: String,
+) {
+    EXCITING("신나요"), COMFORTABLE("편안해요"), PROUD("뿌듯해요"), EXPECTED("기대돼요"), HAPPY("행복해요"), EAGER("의욕적이에요"), FLUTTERING(
+        "설레요"
+    ),
+    FRESH("상쾌해요"), DEPRESSED("우울해요"), LONELY("외로워요"), UNEASY("불안해요"), SAD("슬퍼요"), ANGRY("화나요"), BURDENED(
+        "부담돼요"
+    ),
+    FRUSTRATED("짜증나요"), TIRED("피곤해요"),
 }
