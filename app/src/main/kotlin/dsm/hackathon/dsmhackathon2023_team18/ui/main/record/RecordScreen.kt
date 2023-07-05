@@ -53,7 +53,7 @@ fun RecordScreen(
     val (selectedMood, onMoodSelected) = remember { mutableStateOf<DdeokMood?>(null) }
 
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxSize()
             .background(Color.White),
         verticalArrangement = Arrangement.spacedBy(24.dp),
