@@ -106,10 +106,26 @@ fun RiceMarketScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            subject = "ASDFASDF",
-        ) {
-
-        }
+            point = 10000,
+            subject = "뒷산 올라가서 맑은 공기 쐐기",
+            onButtonClick = {},
+        )
+        TaskCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            point = 5000,
+            subject = "가장 좋아하는 영화 다시 보기",
+            onButtonClick = {},
+        )
+        TaskCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            point = 3000,
+            subject = "자신만의 소확행 떠올리기",
+            onButtonClick = {},
+        )
     }
 }
 
