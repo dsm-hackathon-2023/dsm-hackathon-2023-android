@@ -126,7 +126,7 @@ fun RecordScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            message = "그렇군요. 오늘 하루도 고생 많으셨습니다.\n오늘은 어떤 감정들을 느꼈는지 찰떡에게\n말씀해주세요!",
+            message = "그렇군요. 오늘 하루도 고생 많으셨습니다.오늘은 어떤 감정들을 느꼈는지 찰떡에게 말씀해주세요!",
         )
         MoodChips(
             modifier = Modifier
@@ -146,7 +146,7 @@ fun RecordScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            message = "오늘의 감정 키워드는\n“0000”, “0000”, “000”\n이군요.\n이제 오늘 하루 느낀 감정, 기분 사건을 떠올리며 일기를 작성해보세요.",
+            message = "오늘의 감정 키워드는 “0000”, “0000”, “0000” 이군요. 이제 오늘 하루 느낀 감정, 기분 사건을 떠올리며 일기를 작성해보세요.",
         )
         DdeokDiary(
             modifier = Modifier
@@ -166,7 +166,7 @@ fun RecordScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            message = "안녕하세요. 오늘 하루도 잘 보내셨나요? \n오늘 당신의 하루는 어땠는지 말씀해주세요!",
+            message = "오늘을 더욱 돋보이게 할 사진이 있으신가요? 일기와 함께 기록하고 싶은 사진을 업로드 해보세요."
         )
         DdeokDivider(
             modifier = Modifier
@@ -179,7 +179,7 @@ fun RecordScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            message = "안녕하세요. 오늘 하루도 잘 보내셨나요? \n오늘 당신의 하루는 어땠는지 말씀해주세요!",
+            message = "안녕하세요. 오늘 하루도 잘 보내셨나요? 오늘 당신의 하루는 어땠는지 말씀해주세요!",
         )
     }
 }
@@ -226,9 +226,9 @@ private fun DdeokMessage(
                 tint = Color.Unspecified,
             )
         }
-
         Text(
             modifier = Modifier
+                .weight(1f)
                 .background(
                     color = Gray2,
                     shape = RoundedCornerShape(20.dp),
@@ -240,6 +240,7 @@ private fun DdeokMessage(
             text = message,
             style = MaterialTheme.typography.bodyMedium,
         )
+        Spacer(modifier = Modifier.weight(0.05f))
     }
 }
 
