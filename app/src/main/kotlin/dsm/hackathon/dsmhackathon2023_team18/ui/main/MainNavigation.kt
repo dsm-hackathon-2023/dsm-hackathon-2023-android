@@ -6,6 +6,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.Home
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.record.RecordScreen
+import dsm.hackathon.dsmhackathon2023_team18.ui.main.ricemarket.navigateToRiceMarketNav
+import dsm.hackathon.dsmhackathon2023_team18.ui.main.ricemarket.riceMarketNavigation
 
 fun NavGraphBuilder.mainNavigation(
     navController: NavHostController,
@@ -17,6 +19,7 @@ fun NavGraphBuilder.mainNavigation(
         composable(MainDestination.home) {
             Home(
                 onNavigateToRecord = navController::navigateToRecord,
+                onNavigateToRiceMarketNav = navController::navigateToRiceMarketNav,
             )
         }
         composable(MainDestination.record) {
@@ -24,6 +27,7 @@ fun NavGraphBuilder.mainNavigation(
                 onNavigateUp = navController::navigateUp,
             )
         }
+        riceMarketNavigation(navController)
     }
 }
 

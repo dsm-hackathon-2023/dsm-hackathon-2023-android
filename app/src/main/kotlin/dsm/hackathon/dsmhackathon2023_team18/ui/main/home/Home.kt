@@ -33,6 +33,7 @@ import kotlinx.coroutines.launch
 fun Home(
     modifier: Modifier = Modifier,
     onNavigateToRecord: () -> Unit,
+    onNavigateToRiceMarketNav: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     var recordButtonClicked by remember { mutableStateOf(false) }
@@ -69,6 +70,17 @@ fun Home(
                 title = { },
                 actions = {
                     Spacer(modifier = Modifier.width(16.dp))
+                    IconButton(
+                        modifier = Modifier.size(32.dp),
+                        onClick = onNavigateToRiceMarketNav,
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_shop),
+                            tint = Color.White,
+                            contentDescription = "shop",
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
                     IconButton(
                         modifier = Modifier.size(32.dp),
                         onClick = { /*TODO*/ },
