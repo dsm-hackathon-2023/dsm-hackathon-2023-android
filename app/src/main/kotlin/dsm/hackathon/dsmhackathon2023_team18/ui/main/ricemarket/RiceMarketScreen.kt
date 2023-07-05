@@ -112,6 +112,7 @@ fun RiceMarketScreen(
             RicePointCard(
                 modifier = Modifier.weight(0.7f),
                 point = totalPoint,
+                text = "지금까지 모은 쌀",
             )
         }
 
@@ -239,6 +240,7 @@ private fun MoodCard(
 private fun RicePointCard(
     modifier: Modifier = Modifier,
     mood: DdeokMood = DdeokMood.VERY_BAD,
+    text: String,
     point: Int,
 ) {
     Column(
@@ -256,7 +258,7 @@ private fun RicePointCard(
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = mood.text,
+            text = text,
             style = MaterialTheme.typography.bodySmall,
             color = Gray1,
             textAlign = TextAlign.Start,
