@@ -35,6 +35,7 @@ fun Home(
     onNavigateToRecord: () -> Unit,
     onNavigateToRiceMarketNav: () -> Unit,
     onNavigateToTimelineNav: () -> Unit,
+    onNavigateToReport: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     var recordButtonClicked by remember { mutableStateOf(false) }
@@ -84,7 +85,7 @@ fun Home(
                     Spacer(modifier = Modifier.width(8.dp))
                     IconButton(
                         modifier = Modifier.size(32.dp),
-                        onClick = { /*TODO*/ },
+                        onClick = onNavigateToReport,
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_report),
