@@ -52,7 +52,7 @@ fun CalendarScreen(
                     ),
                 ),
         ) {
-            val webViewState = rememberWebViewState(url = "https://onuri.vercel.app/")
+            val webViewState = rememberWebViewState(url = "https://onui.vercel.app/")
             WebView(
                 modifier = Modifier
                     .fillMaxSize()

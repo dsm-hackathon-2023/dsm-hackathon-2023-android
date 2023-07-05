@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,7 +34,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryColor
 import dsm.hackathon.dsmhackathon2023_team18.R
+import dsm.hackathon.dsmhackathon2023_team18.domain.DdeokMood
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
+import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray2
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -70,12 +73,27 @@ fun RiceMarketScreen(
             },
             colors = topAppBarColors,
         )
-
         Banner(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
         )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp)
+                .padding(horizontal = 16.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            MoodCard(
+                modifier = Modifier.weight(0.3f),
+                mood = DdeokMood.VERY_GOOD,
+            )
+            RicePointCard(
+                modifier = Modifier.weight(0.7f),
+            )
+        }
     }
 }
 
@@ -125,6 +143,79 @@ private fun Banner(
             painter = painterResource(id = R.drawable.ic_ddeok_big),
             contentDescription = null,
             tint = Color.Unspecified,
+        )
+    }
+}
+
+@Composable
+fun MoodCard(
+    modifier: Modifier = Modifier,
+    mood: DdeokMood,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(
+                color = Gray2,
+                shape = RoundedCornerShape(20.dp),
+            )
+            .padding(
+                horizontal = 16.dp,
+                vertical = 12.dp,
+            ),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = mood.text,
+            style = MaterialTheme.typography.bodySmall,
+            color = Gray1,
+            textAlign = TextAlign.Center,
+        )
+        Icon(
+            modifier = Modifier.fillMaxWidth(),
+            painter = painterResource(id = mood.selectedResId),
+            contentDescription = null,
+            tint = Color.Unspecified,
+        )
+    }
+}
+
+
+@Composable
+fun RicePointCard(
+    modifier: Modifier = Modifier,
+    mood: DdeokMood = DdeokMood.VERY_BAD,
+    point: Int = 3_362_009,
+) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(
+                color = Gray2,
+                shape = RoundedCornerShape(20.dp),
+            )
+            .padding(
+                horizontal = 16.dp,
+                vertical = 12.dp,
+            ),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = mood.text,
+            style = MaterialTheme.typography.bodySmall,
+            color = Gray1,
+            textAlign = TextAlign.Start,
+        )
+        Spacer(modifier = Modifier.weight(1f))
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "$point 톨",
+            style = MaterialTheme.typography.titleLarge,
+            color = Gray1,
+            textAlign = TextAlign.End,
+            fontWeight = FontWeight.SemiBold,
         )
     }
 }
