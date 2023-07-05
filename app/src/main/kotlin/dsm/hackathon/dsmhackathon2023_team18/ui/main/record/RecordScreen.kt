@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryDdeok
 import dsm.hackathon.dsmhackathon2023_team18.domain.DdeokMood
@@ -180,7 +181,7 @@ private fun DdeokPicker(
     selectedMood: DdeokMood?,
     onMoodSelected: (mood: DdeokMood) -> Unit,
 ) {
-    Row(
+    Column(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
@@ -193,24 +194,36 @@ private fun DdeokPicker(
                 horizontal = 16.dp,
                 vertical = 12.dp,
             ),
-        horizontalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        DdeokMood.values().forEach { mood ->
-            IconButton(
-                onClick = { onMoodSelected(mood) },
-            ) {
-                Icon(
-                    modifier = Modifier.size(48.dp),
-                    painter = painterResource(
-                        id = if (mood == selectedMood) {
-                            mood.selectedResId
-                        } else {
-                            mood.unselectedResId
-                        },
-                    ),
-                    contentDescription = "mood",
-                    tint = Color.Unspecified,
-                )
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = "오늘은 어떤 하루였나요?",
+            style = MaterialTheme.typography.bodySmall,
+            color = Gray1,
+            textAlign = TextAlign.Center,
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
+        ) {
+            DdeokMood.values().forEach { mood ->
+                IconButton(
+                    onClick = { onMoodSelected(mood) },
+                ) {
+                    Icon(
+                        modifier = Modifier.size(48.dp),
+                        painter = painterResource(
+                            id = if (mood == selectedMood) {
+                                mood.selectedResId
+                            } else {
+                                mood.unselectedResId
+                            },
+                        ),
+                        contentDescription = "mood",
+                        tint = Color.Unspecified,
+                    )
+                }
             }
         }
     }
