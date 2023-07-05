@@ -16,3 +16,4 @@ val PrimaryYellow = Color(0xFFFFCF71)
 val Background = Color(0xFFF5F0EF)
 
 val Gray2 = Color(0xFFEFEFEF)
+val Gray5 = Color(0xFFD9D9D9)

@@ -1,6 +1,7 @@
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.record
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,7 +33,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryDdeok
+import dsm.hackathon.dsmhackathon2023_team18.domain.DdeokMood
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray2
+import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray5
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -45,6 +48,7 @@ fun RecordScreen(
     val topAppBarColors = TopAppBarDefaults.smallTopAppBarColors(
         containerColor = Color.Transparent,
     )
+    val (selectedMood, onMoodSelected) = remember { mutableStateOf<DdeokMood?>(null) }
 
     Column(
         modifier = Modifier
@@ -74,6 +78,10 @@ fun RecordScreen(
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             message = "안녕하세요. 오늘 하루도 잘 보내셨나요? \n오늘 당신의 하루는 어땠는지 말씀해주세요!",
+        )
+        DdeokPicker(
+            selectedMood = selectedMood,
+            onMoodSelected = onMoodSelected,
         )
         DdeokMessage(
             modifier = Modifier
@@ -126,10 +134,10 @@ private fun DdeokMessage(
             space = 12.dp,
             alignment = Alignment.Start,
         ),
-        verticalAlignment = Alignment.Top,
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         IconButton(
-            modifier = Modifier.size(64.dp),
+            modifier = Modifier.size(48.dp),
             onClick = onDdeokClick,
         ) {
             Icon(
@@ -158,5 +166,42 @@ private fun DdeokMessage(
             text = message,
             style = MaterialTheme.typography.bodyMedium,
         )
+    }
+}
+
+@Composable
+private fun DdeokPicker(
+    modifier: Modifier = Modifier,
+    selectedMood: DdeokMood?,
+    onMoodSelected: (mood: DdeokMood) -> Unit,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .border(
+                width = 1.dp,
+                color = Gray5,
+                shape = RoundedCornerShape(20.dp),
+            ),
+    ) {
+        DdeokMood.values().forEach { mood ->
+            IconButton(
+                onClick = { onMoodSelected(mood) },
+            ) {
+                Icon(
+                    modifier = Modifier.size(48.dp),
+                    painter = painterResource(
+                        id = if (mood == selectedMood) {
+                            mood.selectedResId
+                        } else {
+                            mood.unselectedResId
+                        },
+                    ),
+                    contentDescription = "mood",
+                    tint = Color.Unspecified,
+                )
+            }
+        }
     }
 }
