@@ -81,7 +81,6 @@ fun RecordScreen(
         }
         Unit
     }
-    val (selectedChips, onChipSelected) = remember { mutableStateOf<List<Mood>>(listOf()) }
     val (diaryText, onDiaryTextChanged) = remember { mutableStateOf("") }
 
     var selectedImage by remember { mutableStateOf<Uri?>(null) }
@@ -174,8 +173,11 @@ fun RecordScreen(
             }
         }
 
+        val isMoodNotEmpty by remember(selectedMoods.size) {
+            mutableStateOf(selectedMoods.toList().isNotEmpty())
+        }
         AnimatedVisibility(
-            visible = selectedChips.isNotEmpty(),
+            visible = isMoodNotEmpty,
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(24.dp),
@@ -401,8 +403,7 @@ private fun MoodChips(
         )
     ) {
         Mood.values().forEach { mood ->
-            val selected = selectedMoods.contains(mood)
-            MoodChip(mood = mood) {
+            MoodChip(mood = mood) { selected ->
                 onMoodSelect(mood, selected)
             }
         }
@@ -414,13 +415,16 @@ private fun MoodChips(
 private fun MoodChip(
     modifier: Modifier = Modifier,
     mood: Mood,
-    onClick: () -> Unit,
+    onClick: (selected: Boolean) -> Unit,
 ) {
     var selected by remember { mutableStateOf(false) }
     FilterChip(
         modifier = modifier,
         selected = selected,
-        onClick = { selected = !selected },
+        onClick = {
+            selected = !selected
+            onClick(selected)
+        },
         label = {
             Text(
                 text = mood.text,
