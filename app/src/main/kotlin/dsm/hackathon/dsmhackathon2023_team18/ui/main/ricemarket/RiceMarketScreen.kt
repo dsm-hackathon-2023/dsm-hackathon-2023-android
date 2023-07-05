@@ -1,7 +1,9 @@
 package dsm.hackathon.dsmhackathon2023_team18.ui.main.ricemarket
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,9 +12,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.AbsoluteRoundedCornerShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -37,6 +42,7 @@ import dsm.hackathon.dsmhackathon2023_team18.R
 import dsm.hackathon.dsmhackathon2023_team18.domain.DdeokMood
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray2
+import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray6
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -94,6 +100,15 @@ fun RiceMarketScreen(
                 modifier = Modifier.weight(0.7f),
             )
         }
+
+        TaskCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            subject = "ASDFASDF",
+        ) {
+
+        }
     }
 }
 
@@ -148,7 +163,7 @@ private fun Banner(
 }
 
 @Composable
-fun MoodCard(
+private fun MoodCard(
     modifier: Modifier = Modifier,
     mood: DdeokMood,
 ) {
@@ -183,7 +198,7 @@ fun MoodCard(
 
 
 @Composable
-fun RicePointCard(
+private fun RicePointCard(
     modifier: Modifier = Modifier,
     mood: DdeokMood = DdeokMood.VERY_BAD,
     point: Int = 3_362_009,
@@ -212,10 +227,66 @@ fun RicePointCard(
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = "$point 톨",
-            style = MaterialTheme.typography.titleLarge,
+            style = MaterialTheme.typography.headlineMedium,
             color = Gray1,
             textAlign = TextAlign.End,
             fontWeight = FontWeight.SemiBold,
         )
+    }
+}
+
+@Composable
+private fun TaskCard(
+    modifier: Modifier = Modifier,
+    point: Int = 5000,
+    subject: String,
+    onButtonClick: () -> Unit,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(
+                color = Gray2,
+                shape = RoundedCornerShape(20.dp),
+            )
+            .padding(
+                horizontal = 16.dp,
+                vertical = 12.dp,
+            )
+            .clickable(onClick = onButtonClick),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Box(
+            modifier = Modifier
+                .size(36.dp)
+                .background(
+                    color = LocalPrimaryColor.current,
+                    shape = AbsoluteRoundedCornerShape(100),
+                ),
+            contentAlignment = Alignment.Center,
+        ) {
+            Icon(
+                imageVector = Icons.Filled.LocationOn,
+                contentDescription = null,
+                tint = Color.White,
+            )
+        }
+        Column(
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Text(
+                text = "$point 톨",
+                color = Gray1,
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
+            )
+            Text(
+                text = subject,
+                color = Gray6,
+                style = MaterialTheme.typography.bodyMedium,
+            )
+        }
     }
 }
