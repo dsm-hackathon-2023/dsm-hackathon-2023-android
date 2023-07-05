@@ -96,7 +96,6 @@ fun RecordScreen(
             .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
-        Spacer(modifier = Modifier.height(24.dp))
         TopAppBar(
             title = {
                 Text(

@@ -16,6 +16,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.core.view.WindowCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import dsm.hackathon.dsmhackathon2023_team18.domain.PrimaryDdeok
@@ -43,7 +44,7 @@ class MainActivity : ComponentActivity() {
             navigationBarColor = Color.Transparent.toArgb()
             isNavigationBarContrastEnforced = false
         }
-
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         val primaryDdeok = PrimaryDdeok.values().random()
 
         setContent {

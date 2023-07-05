@@ -1,11 +1,8 @@
 package dsm.hackathon.dsmhackathon2023_team18.ui.main
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -57,52 +54,46 @@ fun Home(
     Scaffold(
         modifier = modifier.fillMaxSize(),
         topBar = {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 24.dp),
-            ) {
-                TopAppBar(
-                    navigationIcon = {
-                        IconButton(
-                            onClick = { /*TODO*/ },
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_settings),
-                                contentDescription = null,
-                                tint = Color.White,
-                            )
-                        }
-                    },
-                    title = { },
-                    actions = {
-                        Spacer(modifier = Modifier.width(16.dp))
-                        IconButton(
-                            modifier = Modifier.size(32.dp),
-                            onClick = { /*TODO*/ },
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_report),
-                                tint = Color.White,
-                                contentDescription = "report",
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(8.dp))
-                        IconButton(
-                            modifier = Modifier.size(32.dp),
-                            onClick = { /*TODO*/ },
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_timeline),
-                                tint = Color.White,
-                                contentDescription = "timeline",
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(16.dp))
-                    },
-                    colors = topAppBarColors,
-                )
-            }
+            TopAppBar(
+                navigationIcon = {
+                    IconButton(
+                        onClick = { /*TODO*/ },
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_settings),
+                            contentDescription = null,
+                            tint = Color.White,
+                        )
+                    }
+                },
+                title = { },
+                actions = {
+                    Spacer(modifier = Modifier.width(16.dp))
+                    IconButton(
+                        modifier = Modifier.size(32.dp),
+                        onClick = { /*TODO*/ },
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_report),
+                            tint = Color.White,
+                            contentDescription = "report",
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                    IconButton(
+                        modifier = Modifier.size(32.dp),
+                        onClick = { /*TODO*/ },
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.ic_timeline),
+                            tint = Color.White,
+                            contentDescription = "timeline",
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                },
+                colors = topAppBarColors,
+            )
         },
         floatingActionButton = {
             IconButton(
