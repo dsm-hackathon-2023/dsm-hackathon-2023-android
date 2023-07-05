@@ -27,6 +27,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,6 +49,7 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray2
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray6
 import dsm.hackathon.dsmhackathon2023_team18.ui.util.PrimaryButton
+import dsm.hackathon.dsmhackathon2023_team18.ui.util.PrimaryIconButton
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -254,7 +259,7 @@ private fun RicePointCard(
         Spacer(modifier = Modifier.weight(1f))
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "$point 톨",
+            text = "%,d".format(point) + " 톨",
             style = MaterialTheme.typography.headlineMedium,
             color = Gray1,
             textAlign = TextAlign.End,
@@ -266,10 +271,11 @@ private fun RicePointCard(
 @Composable
 private fun TaskCard(
     modifier: Modifier = Modifier,
-    point: Int = 5000,
+    point: Int,
     subject: String,
-    onButtonClick: () -> Unit,
+    onButtonClick: (point: Int) -> Unit,
 ) {
+    var buttonEnabled by remember { mutableStateOf(true) }
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -304,7 +310,7 @@ private fun TaskCard(
             verticalArrangement = Arrangement.Center,
         ) {
             Text(
-                text = "$point 톨",
+                text = "%,d".format(point) + " 톨",
                 color = Gray1,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold,
@@ -315,10 +321,17 @@ private fun TaskCard(
                 style = MaterialTheme.typography.bodyMedium,
             )
         }
-        PrimaryButton(
-            text = "완료하기",
-            onClick = onButtonClick,
-        )
+        if (buttonEnabled) {
+            PrimaryButton(
+                text = "완료하기",
+                onClick = {
+                    onButtonClick(point)
+                    buttonEnabled = false
+                },
+            )
+        } else {
+            PrimaryIconButton {}
+        }
     }
 }
 
