@@ -1,15 +1,15 @@
-package dsm.hackathon.dsmhackathon2023_team18.ui.main.settings
+@file:OptIn(ExperimentalMaterial3Api::class)
+
+package dsm.hackathon.dsmhackathon2023_team18.ui.main.tips
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -22,19 +22,16 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import dsm.hackathon.dsmhackathon2023_team18.R
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(
+fun TipsScreen(
     modifier: Modifier = Modifier,
     onNavigateUp: () -> Unit,
-    onNavigateToTips: () -> Unit,
 ) {
     val topAppBarColors = TopAppBarDefaults.smallTopAppBarColors(
         containerColor = Color.Transparent,
@@ -50,7 +47,7 @@ fun SettingsScreen(
         TopAppBar(
             title = {
                 Text(
-                    text = "설정",
+                    text = "Tips!",
                     color = Gray1,
                 )
             },
@@ -72,23 +69,14 @@ fun SettingsScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            painter = painterResource(id = R.drawable.img_settings_my_information),
-            contentDescription = null,
-        )
-        Image(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-                .clip(RoundedCornerShape(20.dp))
-                .clickable(onClick = onNavigateToTips),
-            painter = painterResource(id = R.drawable.img_settings_change_button_1_tips),
+            painter = painterResource(id = R.drawable.img_tips_1),
             contentDescription = null,
         )
         Image(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            painter = painterResource(id = R.drawable.img_settings_change_button_2_theme),
+            painter = painterResource(id = R.drawable.img_tips_2),
             contentDescription = null,
         )
 
@@ -96,14 +84,14 @@ fun SettingsScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            painter = painterResource(id = R.drawable.img_settings_list_1),
+            painter = painterResource(id = R.drawable.img_tips_3),
             contentDescription = null,
         )
         Image(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
-            painter = painterResource(id = R.drawable.img_settings_list_2),
+            painter = painterResource(id = R.drawable.img_tips_4),
             contentDescription = null,
         )
     }
