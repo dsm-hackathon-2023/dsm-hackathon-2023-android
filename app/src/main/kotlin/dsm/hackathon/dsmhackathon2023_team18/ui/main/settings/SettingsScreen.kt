@@ -46,7 +46,7 @@ fun SettingsScreen(
         TopAppBar(
             title = {
                 Text(
-                    text = "분석 보고서",
+                    text = "설정",
                     color = Gray1,
                 )
             },
