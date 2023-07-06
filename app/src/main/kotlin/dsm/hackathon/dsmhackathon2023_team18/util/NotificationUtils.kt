@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import dsm.hackathon.dsmhackathon2023_team18.MainActivity
@@ -29,9 +30,18 @@ fun Context.sendNotification(
         description = descriptionText
     }
     val builder =
-        NotificationCompat.Builder(this, "ch_onui_notification").setSmallIcon(R.drawable.ic_tiger)
+        NotificationCompat.Builder(this, "ch_onui_notification")
+            .setSmallIcon(R.drawable.ic_tiger_large)
             .setContentTitle(title).setContentText(content)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT).setContentIntent(pendingIntent)
+            .setStyle(
+                NotificationCompat.BigPictureStyle().bigPicture(
+                    BitmapFactory.decodeResource(
+                        resources,
+                        R.drawable.ic_tiger_large,
+                    ),
+                )
+            )
     // Register the channel with the system
     val notificationManager: NotificationManager =
         getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
