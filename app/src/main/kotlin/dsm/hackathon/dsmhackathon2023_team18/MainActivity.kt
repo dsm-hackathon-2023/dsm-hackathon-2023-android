@@ -43,7 +43,7 @@ class MainActivity : ComponentActivity() {
         }
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        val primaryDdeok = PrimaryDdeok.values().random()
+        val primaryDdeok = PrimaryDdeok.GREEN //.values().random()
 
         setContent {
             CompositionLocalProvider(
