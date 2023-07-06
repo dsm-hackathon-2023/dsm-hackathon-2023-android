@@ -39,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.web.WebView
 import com.google.accompanist.web.rememberWebViewState
 import dsm.hackathon.dsmhackathon2023_team18.LocalPrimaryDdeok
+import dsm.hackathon.dsmhackathon2023_team18.ui.main.home.DdeokState
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray1
 import dsm.hackathon.dsmhackathon2023_team18.ui.theme.Gray2
 import kotlinx.coroutines.delay
@@ -113,13 +114,21 @@ private fun DdeokMessage(
     message: String,
 ) {
     val scope = rememberCoroutineScope()
-    var ddeokClicked by remember { mutableStateOf(false) }
+    var recordButtonState by remember { mutableStateOf(DdeokState.DEFAULT) }
     val onDdeokClick = {
-        if (!ddeokClicked) {
-            ddeokClicked = true
+        if (recordButtonState == DdeokState.DEFAULT) {
             scope.launch {
-                delay(1000L)
-                ddeokClicked = false
+                recordButtonState = DdeokState.LOW_PRESSED
+                delay(10L)
+                recordButtonState = DdeokState.FULL_PRESSED
+                delay(100L)
+                recordButtonState = DdeokState.LOW_PRESSED
+                delay(100L)
+                recordButtonState = DdeokState.MIDDLE_PRESSED
+                delay(100L)
+                recordButtonState = DdeokState.HIGH_PRESSED
+                delay(50L)
+                recordButtonState = DdeokState.DEFAULT
             }
             Unit
         }
@@ -139,10 +148,12 @@ private fun DdeokMessage(
         ) {
             Icon(
                 painter = painterResource(
-                    if (ddeokClicked) {
-                        LocalPrimaryDdeok.current.fullPressedResId
-                    } else {
-                        LocalPrimaryDdeok.current.defaultResId
+                    id = when (recordButtonState) {
+                        DdeokState.DEFAULT -> LocalPrimaryDdeok.current.defaultResId
+                        DdeokState.FULL_PRESSED -> LocalPrimaryDdeok.current.fullPressedResId
+                        DdeokState.MIDDLE_PRESSED -> LocalPrimaryDdeok.current.middlePressedResId
+                        DdeokState.LOW_PRESSED -> LocalPrimaryDdeok.current.lowPressedResId
+                        DdeokState.HIGH_PRESSED -> LocalPrimaryDdeok.current.highPressedResId
                     },
                 ),
                 contentDescription = "create new record",
