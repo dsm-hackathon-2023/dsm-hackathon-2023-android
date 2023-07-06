@@ -29,6 +29,10 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.util.MoodModal
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+enum class DdeokState {
+    DEFAULT, FULL_PRESSED, LOW_PRESSED, MIDDLE_PRESSED, HIGH_PRESSED,
+}
+
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,7 +45,7 @@ fun Home(
 ) {
     val scope = rememberCoroutineScope()
     val (shouldShowMoodModal, setMoodModalState) = remember { mutableStateOf(false) }
-    var recordButtonClicked by remember { mutableStateOf(false) }
+    var recordButtonState by remember { mutableStateOf(DdeokState.DEFAULT) }
     val topAppBarColors = TopAppBarDefaults.smallTopAppBarColors(
         containerColor = Color.Transparent,
     )
@@ -111,12 +115,20 @@ fun Home(
             IconButton(
                 modifier = Modifier.size(64.dp),
                 onClick = {
-                    if (!recordButtonClicked) {
+                    if (recordButtonState == DdeokState.DEFAULT) {
                         setMoodModalState(true)
-                        recordButtonClicked = true
                         scope.launch {
-                            delay(1000L)
-                            recordButtonClicked = false
+                            recordButtonState = DdeokState.LOW_PRESSED
+                            delay(10L)
+                            recordButtonState = DdeokState.FULL_PRESSED
+                            delay(100L)
+                            recordButtonState = DdeokState.LOW_PRESSED
+                            delay(100L)
+                            recordButtonState = DdeokState.MIDDLE_PRESSED
+                            delay(100L)
+                            recordButtonState = DdeokState.HIGH_PRESSED
+                            delay(50L)
+                            recordButtonState = DdeokState.DEFAULT
                         }
                         Unit
                     }
@@ -124,10 +136,12 @@ fun Home(
             ) {
                 Icon(
                     painter = painterResource(
-                        if (recordButtonClicked) {
-                            LocalPrimaryDdeok.current.pressedResId
-                        } else {
-                            LocalPrimaryDdeok.current.defaultResId
+                        id = when (recordButtonState) {
+                            DdeokState.DEFAULT -> LocalPrimaryDdeok.current.defaultResId
+                            DdeokState.FULL_PRESSED -> LocalPrimaryDdeok.current.fullPressedResId
+                            DdeokState.MIDDLE_PRESSED -> LocalPrimaryDdeok.current.middlePressedResId
+                            DdeokState.LOW_PRESSED -> LocalPrimaryDdeok.current.lowPressedResId
+                            DdeokState.HIGH_PRESSED -> LocalPrimaryDdeok.current.highPressedResId
                         },
                     ),
                     contentDescription = "create new record",

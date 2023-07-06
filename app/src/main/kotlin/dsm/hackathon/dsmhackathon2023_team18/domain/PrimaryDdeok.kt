@@ -42,21 +42,33 @@ enum class DdeokMood(
 enum class PrimaryDdeok(
     val color: Color,
     @DrawableRes val defaultResId: Int,
-    @DrawableRes val pressedResId: Int,
+    @DrawableRes val fullPressedResId: Int,
+    @DrawableRes val lowPressedResId: Int,
+    @DrawableRes val middlePressedResId: Int,
+    @DrawableRes val highPressedResId: Int,
 ) {
     GREEN(
         color = PrimaryGreen,
         defaultResId = R.drawable.ic_ddeok_green_default,
-        pressedResId = R.drawable.ic_ddeok_green_pressed,
+        fullPressedResId = R.drawable.ic_ddeok_green_pressed,
+        lowPressedResId = R.drawable.ic_ddeok_green_pressed_low,
+        middlePressedResId = R.drawable.ic_ddeok_green_pressed_middle,
+        highPressedResId = R.drawable.ic_ddeok_green_pressed_high,
     ),
     PINK(
         color = PrimaryPink,
         defaultResId = R.drawable.ic_ddeok_pink_default,
-        pressedResId = R.drawable.ic_ddeok_pink_pressed,
+        fullPressedResId = R.drawable.ic_ddeok_pink_pressed,
+        lowPressedResId = R.drawable.ic_ddeok_pink_pressed_low,
+        middlePressedResId = R.drawable.ic_ddeok_pink_pressed_middle,
+        highPressedResId = R.drawable.ic_ddeok_pink_pressed_high,
     ),
     YELLOW(
         color = PrimaryYellow,
         defaultResId = R.drawable.ic_ddeok_yellow_default,
-        pressedResId = R.drawable.ic_ddeok_yellow_pressed,
-    )
+        fullPressedResId = R.drawable.ic_ddeok_yellow_pressed,
+        lowPressedResId = R.drawable.ic_ddeok_yellow_pressed_low,
+        middlePressedResId = R.drawable.ic_ddeok_yellow_pressed_middle,
+        highPressedResId = R.drawable.ic_ddeok_yellow_pressed_high,
+    ),
 }

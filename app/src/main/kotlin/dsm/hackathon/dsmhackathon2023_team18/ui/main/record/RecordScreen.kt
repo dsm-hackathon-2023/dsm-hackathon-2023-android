@@ -347,7 +347,7 @@ private fun DdeokMessage(
             Icon(
                 painter = painterResource(
                     if (ddeokClicked) {
-                        LocalPrimaryDdeok.current.pressedResId
+                        LocalPrimaryDdeok.current.fullPressedResId
                     } else {
                         LocalPrimaryDdeok.current.defaultResId
                     },
