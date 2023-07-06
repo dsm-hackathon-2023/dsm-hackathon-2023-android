@@ -45,6 +45,7 @@ fun Home(
     onNavigateToRiceMarketNav: () -> Unit,
     onNavigateToTimelineNav: () -> Unit,
     onNavigateToReport: () -> Unit,
+    onNavigateToSettings: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val (shouldShowMoodModal, setMoodModalState) = remember { mutableStateOf(false) }
@@ -66,7 +67,7 @@ fun Home(
             TopAppBar(
                 navigationIcon = {
                     IconButton(
-                        onClick = {},
+                        onClick = onNavigateToSettings,
                     ) {
                         Icon(
                             painter = painterResource(id = R.drawable.ic_settings),

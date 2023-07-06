@@ -12,6 +12,7 @@ import dsm.hackathon.dsmhackathon2023_team18.ui.main.record.RecordScreen
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.report.ReportScreen
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.ricemarket.navigateToRiceMarketNav
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.ricemarket.riceMarketNavigation
+import dsm.hackathon.dsmhackathon2023_team18.ui.main.settings.SettingsScreen
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.timeline.navigateToTimelineNav
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.timeline.timelineNavigation
 
@@ -23,7 +24,9 @@ fun NavGraphBuilder.mainNavigation(
         startDestination = MainDestination.home,
     ) {
         composable(MainDestination.settings) {
-
+            SettingsScreen(
+                onNavigateUp = navController::navigateUp,
+            )
         }
         composable(MainDestination.home) {
             Home(
@@ -31,6 +34,7 @@ fun NavGraphBuilder.mainNavigation(
                 onNavigateToRiceMarketNav = navController::navigateToRiceMarketNav,
                 onNavigateToTimelineNav = navController::navigateToTimelineNav,
                 onNavigateToReport = navController::navigateToReport,
+                onNavigateToSettings = navController::navigateToSettings,
             )
         }
         composable(
@@ -77,6 +81,13 @@ fun NavHostController.navigateToRecord(mood: DdeokMood) {
 
 fun NavHostController.navigateToReport() {
     this.navigate(MainDestination.report) {
+        launchSingleTop = true
+        restoreState = true
+    }
+}
+
+fun NavHostController.navigateToSettings() {
+    this.navigate(MainDestination.settings) {
         launchSingleTop = true
         restoreState = true
     }
