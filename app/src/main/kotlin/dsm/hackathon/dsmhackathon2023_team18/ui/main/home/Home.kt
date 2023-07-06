@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -26,6 +27,8 @@ import dsm.hackathon.dsmhackathon2023_team18.R
 import dsm.hackathon.dsmhackathon2023_team18.domain.DdeokMood
 import dsm.hackathon.dsmhackathon2023_team18.ui.main.calendar.CalendarScreen
 import dsm.hackathon.dsmhackathon2023_team18.ui.util.MoodModal
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -55,6 +58,7 @@ fun Home(
             onDismissRequest = { setMoodModalState(false) },
         )
     }
+    var webViewUrl by rememberSaveable { mutableStateOf("https://onui.vercel.app/") }
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -130,6 +134,10 @@ fun Home(
                             delay(50L)
                             recordButtonState = DdeokState.DEFAULT
                         }
+                        CoroutineScope(Dispatchers.Default).launch {
+                            delay(8000L)
+                            webViewUrl = "https://onui.vercel.app/result"
+                        }
                         Unit
                     }
                 },
@@ -150,6 +158,8 @@ fun Home(
             }
         },
     ) {
-        CalendarScreen()
+        CalendarScreen(
+            webViewUrl = webViewUrl,
+        )
     }
 }

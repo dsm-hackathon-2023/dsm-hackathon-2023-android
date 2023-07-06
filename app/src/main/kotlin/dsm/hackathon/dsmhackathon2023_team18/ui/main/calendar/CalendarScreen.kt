@@ -31,6 +31,7 @@ import dsm.hackathon.dsmhackathon2023_team18.R
 @Composable
 fun CalendarScreen(
     modifier: Modifier = Modifier,
+    webViewUrl: String,
 ) {
     Column(
         modifier = modifier
@@ -52,7 +53,9 @@ fun CalendarScreen(
                     ),
                 ),
         ) {
-            val webViewState = rememberWebViewState(url = "https://onui.vercel.app/")
+            val webViewState = rememberWebViewState(
+                url = webViewUrl.also { println("URLURL $it") },
+            )
             WebView(
                 modifier = Modifier
                     .fillMaxSize()
